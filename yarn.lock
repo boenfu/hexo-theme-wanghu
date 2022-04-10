@@ -258,16 +258,6 @@ accepts@~1.3.5:
     mime-types "~2.1.34"
     negotiator "0.6.3"
 
-acorn-walk@^8.2.0:
-  version "8.2.0"
-  resolved "https://registry.yarnpkg.com/acorn-walk/-/acorn-walk-8.2.0.tgz#741210f2e2426454508853a2f44d0ab83b7f69c1"
-  integrity sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==
-
-acorn@^8.7.0:
-  version "8.7.0"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.7.0.tgz#90951fde0f8f09df93549481e5fc141445b791cf"
-  integrity sha512-V/LGr1APy+PXIwKebEWrkZPwoeoF+w1jiOBUmuxuiUIaOHtob8Qc9BTrYo7VuI5fR8tqsy+buA2WFooR5olqvQ==
-
 ansi-regex@^5.0.1:
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/ansi-regex/-/ansi-regex-5.0.1.tgz#082cb2c89c9fe8659a311a53bd6a4dc5301db304"
@@ -424,6 +414,11 @@ chokidar@^3.0.0:
     readdirp "~3.6.0"
   optionalDependencies:
     fsevents "~2.3.2"
+
+classnames@^2.3.1:
+  version "2.3.1"
+  resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.3.1.tgz#dfcfa3891e306ec1dad105d0e88f4417b8535e8e"
+  integrity sha512-OlQdbZ7gLfGarSqxesMesDa5uz7KFbID8Kpq/SxIoNGDqY8lSYs0D+hhtBXhcdB3rcbXArFr7vlHheLk1voeNA==
 
 color-convert@^1.9.0:
   version "1.9.3"
@@ -850,16 +845,15 @@ hexo-renderer-markdown-it@^4.1.0:
     markdown-it-sub "^1.0.0"
     markdown-it-sup "^1.0.0"
 
-hexo-renderer-react-styled@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/hexo-renderer-react-styled/-/hexo-renderer-react-styled-0.4.0.tgz#4c2704776f6949861b2eab3aa8020c654db3e7f7"
-  integrity sha512-gSY7N4pM9IQeD+Ip5HYs1ryTApoowRBn6lqtdbt8q+s2ACzpMb+bUvS8SKQK75WMQrQrd38g3c9A43B/p0QopQ==
+hexo-renderer-react-styled@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/hexo-renderer-react-styled/-/hexo-renderer-react-styled-0.5.0.tgz#a60e4bdd34e6282aa4bc4c7397ecc620590995f4"
+  integrity sha512-LDPCvKA4HHGULWnMAChnZm7mdklUOEiqzKUdvCzpSJmOfY8ewLxcuFQFoVQYLOEK8yQTGbYUvciHHtZWOk5pfw==
   dependencies:
     "@types/hexo" "^3.8.7"
     "@types/node" "^17.0.23"
-    sucrase "^3.21.0"
+    require-tsx "^0.1.0"
     tslib "^2.3.1"
-    vm2 "^3.9.9"
 
 hexo-server@^3.0.0:
   version "3.0.0"
@@ -1451,6 +1445,15 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
+require-tsx@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/require-tsx/-/require-tsx-0.1.0.tgz#56985d09b6ca7fdf1029c464513dd8765ae411ed"
+  integrity sha512-U4O3Vo4wy+iCra9hNJedEqm33aVqQQOoZ2qKpAQhQc0Z66N2EO4zDXDnrQgWet0yoda2ZxOIT29vwQkqVJgm1A==
+  dependencies:
+    "@types/node" "^17.0.23"
+    sucrase "^3.21.0"
+    tslib "^2.3.1"
+
 resolve@^1.11.0, resolve@^1.22.0:
   version "1.22.0"
   resolved "https://registry.yarnpkg.com/resolve/-/resolve-1.22.0.tgz#5e0b8c67c15df57a89bdbabe603a002f21731198"
@@ -1709,14 +1712,6 @@ vary@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
-
-vm2@^3.9.9:
-  version "3.9.9"
-  resolved "https://registry.yarnpkg.com/vm2/-/vm2-3.9.9.tgz#c0507bc5fbb99388fad837d228badaaeb499ddc5"
-  integrity sha512-xwTm7NLh/uOjARRBs8/95H0e8fT3Ukw5D/JJWhxMbhKzNh1Nu981jQKvkep9iKYNxzlVrdzD0mlBGkDKZWprlw==
-  dependencies:
-    acorn "^8.7.0"
-    acorn-walk "^8.2.0"
 
 warehouse@^4.0.0:
   version "4.0.0"

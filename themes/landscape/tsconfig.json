@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "jsx": "react",
+    "lib": ["dom", "esnext"],
+    "types": ["node", "hexo"],
+    "importHelpers": true,
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "stripInternal": true,
+
+    "strict": true,
+    "strictFunctionTypes": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "useDefineForClassFields": true,
+
+    "newLine": "LF"
+  }
+}

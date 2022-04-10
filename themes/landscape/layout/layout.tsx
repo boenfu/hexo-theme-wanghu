@@ -1,21 +1,29 @@
-import type { ComponentProps } from "hexo-renderer-react-styled";
 import React, { FC } from "react";
 import styled from "styled-components";
 import { Header } from "./components";
 
-const Layout = styled.div``;
+const Layout = styled.div`
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #f6f6f6;
+  overflow: hidden;
+`;
 
-const Main = styled.main``;
+const Main = styled.main`
+  flex: 1;
+  overflow: auto;
+`;
 
-const Component: FC<ComponentProps> = (props) => {
-  let { body } = props;
+const Component: FC<HexoComponentProps> = (props) => {
+  const { body } = props;
 
   return (
     <Layout>
       <Header {...props} />
       <Main
         dangerouslySetInnerHTML={{
-          __html: body,
+          __html: body!,
         }}
       ></Main>
     </Layout>
