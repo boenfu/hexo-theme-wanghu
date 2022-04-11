@@ -10,7 +10,6 @@ const Index = styled.div`
   width: 1000px;
   padding: 0 16px;
   margin: 10px auto;
-  overflow: hidden;
 `;
 
 const Main = styled.div`

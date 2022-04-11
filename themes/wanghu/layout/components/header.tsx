@@ -84,15 +84,12 @@ const SearchWrapper = styled.div`
 `;
 
 const Search = styled.div`
+  display: flex;
+  position: relative;
+  width: 400px;
+  height: 34px;
   font-size: 15px;
   color: #121212;
-  -webkit-tap-highlight-color: rgba(18, 18, 18, 0);
-  display: flex;
-  height: 34px;
-  -webkit-box-flex: 1;
-  flex-grow: 1;
-  position: relative;
-  max-width: 482px;
 `;
 
 const SearchInput = styled.input`
@@ -100,18 +97,78 @@ const SearchInput = styled.input`
   width: 100%;
   display: flex;
   align-items: center;
-  padding-left: 16px;
-  border-radius: 50%;
+  border-radius: 999px;
   background: #f6f6f6;
-  -webkit-tap-highlight-color: rgba(18, 18, 18, 0);
   height: 34px;
-  padding: 4px 10px;
+  padding: 4px 10px 4px 16px;
   font-size: 14px;
   border: 1px solid #ebebeb;
   transition: width 0.2s ease, background 0.3s ease;
   transition-property: background-color, border, color;
   transition-duration: 0.25s;
   transition-timing-function: ease-in;
+`;
+
+const SearchButton = styled.button`
+  flex-shrink: 0;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 14px;
+  height: 34px;
+  min-width: 70px;
+  font-size: 14px;
+  border: 1px solid #06f;
+  padding: 0;
+  border-radius: 999px;
+  transition-property: background-color, color;
+  transition-duration: 0.25s;
+  transition-timing-function: ease-in;
+  color: #fff;
+  background-color: #06f;
+  margin-left: 12px;
+  cursor: pointer;
+
+  &:hover {
+    border-color: #005ce6;
+    background-color: #005ce6;
+  }
+`;
+
+const MenuItem = styled.button`
+  color: #8590a6;
+  padding: 0 16px;
+  font-size: 14px;
+  line-height: 32px;
+  text-align: center;
+  cursor: pointer;
+  background: none;
+  border: 1px solid;
+  border-radius: 3px;
+`;
+
+const Menus = styled.div`
+  display: flex;
+  align-items: center;
+
+  ${MenuItem} {
+    margin-right: 40px;
+  }
+`;
+
+const UserProfile = styled.img`
+  width: 30px;
+  height: 30px;
+  border-radius: 2px;
+`;
+
+const UserInfo = styled.div`
+  flex: 0;
+  display: flex;
+  align-items: center;
+  margin-left: 30px;
+  width: auto;
 `;
 
 export const Header: FC<HexoComponentProps> = ({
@@ -162,9 +219,17 @@ export const Header: FC<HexoComponentProps> = ({
         </Tabs>
         <SearchWrapper>
           <Search>
-            <SearchInput />
+            <SearchInput placeholder="搜索文章" />
           </Search>
+          <SearchButton>搜索</SearchButton>
         </SearchWrapper>
+        <UserInfo>
+          <Menus>
+            <MenuItem>1</MenuItem>
+            <MenuItem>2</MenuItem>
+          </Menus>
+          <UserProfile src="https://avatars.githubusercontent.com/u/33797740?v=4" />
+        </UserInfo>
       </Content>
     </Wrapper>
   );
