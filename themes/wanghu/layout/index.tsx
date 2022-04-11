@@ -2,6 +2,7 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { Posts } from "./components";
 import { PageProvider } from "./context";
+import Github from "./icons/github.svg";
 
 const Index = styled.div`
   height: 100%;
@@ -26,6 +27,11 @@ const Sidebar = styled.div`
   background-color: #fff;
 `;
 
+const GithubIcon = styled(Github)`
+  color: #333;
+  font-size: 36px;
+`;
+
 const Component: FC<HexoComponentProps> = (props) => {
   const { page } = props;
 
@@ -35,7 +41,9 @@ const Component: FC<HexoComponentProps> = (props) => {
         <Main>
           <Posts posts={page.posts} />
         </Main>
-        <Sidebar>1</Sidebar>
+        <Sidebar>
+          <GithubIcon />
+        </Sidebar>
       </Index>
     </PageProvider>
   );
