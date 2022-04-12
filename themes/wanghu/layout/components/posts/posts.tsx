@@ -3,7 +3,11 @@ import React, { FC } from "react";
 import styled from "styled-components";
 import { Item } from "./@item";
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  section + section {
+    border-top: 1px solid #ebebeb;
+  }
+`;
 
 export const Posts: FC<{
   posts: Locals.Post[];

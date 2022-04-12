@@ -1,6 +1,8 @@
 import React, { FC, ReactNode } from "react";
 import styled from "styled-components";
 import classNames from "classnames";
+import Notification from "./notification.svg";
+import Comment from "./comment.svg";
 
 const Wrapper = styled.header`
   flex: none;
@@ -136,16 +138,13 @@ const SearchButton = styled.button`
   }
 `;
 
-const MenuItem = styled.button`
+const MenuItem = styled.a`
+  width: 22px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
   color: #8590a6;
-  padding: 0 16px;
-  font-size: 14px;
-  line-height: 32px;
-  text-align: center;
   cursor: pointer;
-  background: none;
-  border: 1px solid;
-  border-radius: 3px;
 `;
 
 const Menus = styled.div`
@@ -225,8 +224,12 @@ export const Header: FC<HexoComponentProps> = ({
         </SearchWrapper>
         <UserInfo>
           <Menus>
-            <MenuItem>1</MenuItem>
-            <MenuItem>2</MenuItem>
+            <MenuItem>
+              <Notification />
+            </MenuItem>
+            <MenuItem>
+              <Comment />
+            </MenuItem>
           </Menus>
           <UserProfile src="https://avatars.githubusercontent.com/u/33797740?v=4" />
         </UserInfo>

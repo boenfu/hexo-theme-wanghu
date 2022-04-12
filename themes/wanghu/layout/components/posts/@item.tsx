@@ -3,6 +3,9 @@ import { Locals } from "hexo";
 import React, { FC } from "react";
 import styled from "styled-components";
 
+import Hot from "./hot.svg";
+import Timer from "./timer.svg";
+
 const Wrapper = styled.section`
   position: relative;
   display: flex;
@@ -39,6 +42,7 @@ const Title = styled.h2`
   -webkit-box-orient: vertical;
   font-weight: 600;
   font-synthesis: style;
+  cursor: pointer;
 `;
 
 const Excerpt = styled.div`
@@ -49,6 +53,7 @@ const Excerpt = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #444;
+  cursor: pointer;
 `;
 
 const Metrics = styled.div`
@@ -71,7 +76,7 @@ const Content = styled.div`
 const Image = styled.div`
   height: 105px;
   margin-left: 16px;
-  position: relative;
+  cursor: pointer;
 
   img {
     display: block;
@@ -79,6 +84,20 @@ const Image = styled.div`
     border-radius: 4px;
     height: 105px;
     width: 190px;
+  }
+`;
+
+const MetricItem = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    font-size: 18px;
+    margin-right: 4px;
+  }
+
+  & + & {
+    margin-left: 28px;
   }
 `;
 
@@ -94,7 +113,16 @@ export const Item: FC<{
       <Content>
         <Title>{post.title}</Title>
         <Excerpt>{post.slug}</Excerpt>
-        <Metrics>{post.date.format("YYYY/M/D")}</Metrics>
+        <Metrics>
+          <MetricItem>
+            <Hot />
+            20 次查看
+          </MetricItem>
+          <MetricItem>
+            <Timer />
+            12 分钟读完
+          </MetricItem>
+        </Metrics>
       </Content>
       <Image>
         <img
