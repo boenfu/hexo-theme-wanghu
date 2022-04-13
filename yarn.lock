@@ -953,6 +953,11 @@ gensync@^1.0.0-beta.2:
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
   integrity sha512-3hN7NaskYvMDLQY55gnW3NQ+mesEAepTqlg+VEbj7zzqEMBVNhzcGYYeqFo/TlYz6eQiFcp1HcsCZO+nGgS8zg==
 
+github-markdown-css@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/github-markdown-css/-/github-markdown-css-5.1.0.tgz#a96281cd90a8969e3c13b9d3ca6a733a523a00a6"
+  integrity sha512-QLtORwHHtUHhPMHu7i4GKfP6Vx5CWZn+NKQXe+cBhslY1HEt0CTEkP4d/vSROKV0iIJSpl4UtlQ16AD8C6lMug==
+
 glob-parent@~5.1.2:
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.2.tgz#869832c58034fe68a4093c17dc15e8340d8401c4"
@@ -1105,10 +1110,10 @@ hexo-renderer-markdown-it@^4.1.0:
     markdown-it-sub "^1.0.0"
     markdown-it-sup "^1.0.0"
 
-hexo-renderer-react-styled@^0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/hexo-renderer-react-styled/-/hexo-renderer-react-styled-0.7.0.tgz#99060bcba699b1d08d1ff57475bb55fb015bb39f"
-  integrity sha512-3gPEQhOj3OezchnfVu4nPIgD+/VyZ1xrRcZsShwLG8mJTIzyO4wokfBGyl7xuhIPllHEmW2C876gzBoojrwHcA==
+hexo-renderer-react-styled@^0.11.0:
+  version "0.11.0"
+  resolved "https://registry.yarnpkg.com/hexo-renderer-react-styled/-/hexo-renderer-react-styled-0.11.0.tgz#7c78e885555fb1f24b217fbc4ae829856e0d4b21"
+  integrity sha512-M5Qc5qwQN49CUFP3ZvTOce8/C3f6h5lJcC1gtreulLCadiKz0VlE5NfRYuU2nB/ULZbxjlFOqr8bq+bOzWnk5Q==
   dependencies:
     "@svgr/core" "^6.2.1"
     "@types/hexo" "^3.8.7"

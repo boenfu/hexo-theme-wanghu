@@ -2,6 +2,7 @@ import classNames from "classnames";
 import { Locals } from "hexo";
 import React, { FC } from "react";
 import styled from "styled-components";
+import { usePage } from "../../_context";
 
 import Hot from "./hot.svg";
 import Timer from "./timer.svg";
@@ -31,21 +32,20 @@ const Index = styled.div`
   }
 `;
 
-const Title = styled.h2`
+const Title = styled.a`
   font-size: 18px;
   line-height: 28px;
   max-height: 56px;
   display: -webkit-box;
   text-overflow: ellipsis;
-  overflow: hidden;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
   font-weight: 600;
   font-synthesis: style;
-  cursor: pointer;
+  color: #121212;
+  overflow: hidden;
 `;
 
-const Excerpt = styled.div`
+const Excerpt = styled.a`
   line-height: 25px;
   margin-top: 2px;
   min-height: 25px;
@@ -53,7 +53,6 @@ const Excerpt = styled.div`
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #444;
-  cursor: pointer;
 `;
 
 const Metrics = styled.div`
@@ -73,10 +72,9 @@ const Content = styled.div`
   flex-direction: column;
 `;
 
-const Image = styled.div`
+const Image = styled.a`
   height: 105px;
   margin-left: 16px;
-  cursor: pointer;
 
   img {
     display: block;
@@ -105,14 +103,18 @@ export const Item: FC<{
   index: number;
   post: Locals.Post;
 }> = ({ index, post }) => {
+  const { url_for } = usePage();
+
+  let postUrl = url_for(post.path);
+
   return (
     <Wrapper>
       <Index>
         <span className={classNames({ hot: index <= 3 })}>{index}</span>
       </Index>
       <Content>
-        <Title>{post.title}</Title>
-        <Excerpt>{post.slug}</Excerpt>
+        <Title href={postUrl}>{post.title}</Title>
+        <Excerpt href={postUrl}>{post.slug}</Excerpt>
         <Metrics>
           <MetricItem>
             <Hot />
@@ -124,13 +126,12 @@ export const Item: FC<{
           </MetricItem>
         </Metrics>
       </Content>
-      <Image>
+      <Image href={postUrl}>
         <img
           src={
             post.photos?.[0] ||
             "https://pic2.zhimg.com/80/v2-df1dcbeb8412dd1a0500f9c5773b4575_720w.jpg?source=1940ef5c"
           }
-          alt=""
         />
       </Image>
     </Wrapper>

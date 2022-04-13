@@ -5,7 +5,7 @@ import { PageProvider } from "./_context";
 
 import Flash from "./icons/flash.svg";
 
-const Index = styled.div`
+const About = styled.div`
   display: flex;
   align-items: flex-start;
   width: 1000px;
@@ -129,12 +129,8 @@ const Component: FC<HexoComponentProps> = (props) => {
 
   return (
     <PageProvider value={props}>
-      <Index>
-        <Main>
-          <Content>
-            <Posts posts={page.posts} />
-          </Content>
-        </Main>
+      <About>
+        <Main>1</Main>
         <Sidebar>
           <Socials>
             {[1, 2, 3, 4].map((item, index) => (
@@ -163,7 +159,7 @@ const Component: FC<HexoComponentProps> = (props) => {
             <span>联系我们 @2022 忘乎</span>
           </Footer>
         </Sidebar>
-      </Index>
+      </About>
     </PageProvider>
   );
 };

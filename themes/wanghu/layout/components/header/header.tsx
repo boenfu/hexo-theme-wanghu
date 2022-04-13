@@ -1,5 +1,5 @@
 import React, { FC, ReactNode } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import classNames from "classnames";
 import Notification from "./notification.svg";
 import Comment from "./comment.svg";
@@ -11,6 +11,7 @@ const Wrapper = styled.header`
   background-color: #fff;
   box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
   overflow: hidden;
+  z-index: 2;
 `;
 
 const Content = styled.div`
@@ -25,7 +26,7 @@ const Content = styled.div`
   margin: 0 auto;
 `;
 
-const Name = styled.div`
+const Name = styled.a`
   width: 64px;
   font-size: 30px;
   letter-spacing: 2px;
@@ -170,11 +171,36 @@ const UserInfo = styled.div`
   width: auto;
 `;
 
-export const Header: FC<HexoComponentProps> = ({
+const PostHeader = styled.div`
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  border-left: 1px solid #ebebeb;
+  padding-left: 16px;
+  margin-left: 16px;
+`;
+
+const PostFirst = styled.span`
+  font-size: 12px;
+  line-height: 17px;
+  color: #8590a6;
+`;
+
+const PostSource = styled.a`
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 17px;
+  color: #121212;
+`;
+
+const General: FC<HexoComponentProps> = ({
   is_home,
   is_category,
   is_archive,
   is_tag,
+  url_for,
 }) => {
   const tabs: { type: string; isActive(): boolean; content: ReactNode }[] = [
     {
@@ -200,39 +226,67 @@ export const Header: FC<HexoComponentProps> = ({
   ];
 
   return (
+    <>
+      <Tabs>
+        {tabs.map(({ type, isActive, content }) => (
+          <TabItem key={type}>
+            <TabItemLink
+              className={classNames({
+                active: isActive(),
+              })}
+            >
+              {content}
+            </TabItemLink>
+          </TabItem>
+        ))}
+      </Tabs>
+      <SearchWrapper>
+        <Search>
+          <SearchInput placeholder="搜索文章" />
+        </Search>
+        <SearchButton>搜索</SearchButton>
+      </SearchWrapper>
+      <UserInfo>
+        <Menus>
+          <MenuItem>
+            <Notification />
+          </MenuItem>
+          <MenuItem>
+            <Comment />
+          </MenuItem>
+        </Menus>
+        <a href={url_for("/about")}>
+          <UserProfile src="https://avatars.githubusercontent.com/u/33797740?v=4" />
+        </a>
+      </UserInfo>
+    </>
+  );
+};
+
+const Post: FC<HexoComponentProps> = ({ url_for }) => {
+  return (
+    <>
+      <PostHeader>
+        <PostFirst>首发于</PostFirst>
+        <PostSource href={url_for("/")}>网站</PostSource>
+      </PostHeader>
+      <UserInfo>
+        <a href={url_for("/about")}>
+          <UserProfile src="https://avatars.githubusercontent.com/u/33797740?v=4" />
+        </a>
+      </UserInfo>
+    </>
+  );
+};
+
+export const Header: FC<HexoComponentProps> = (props) => {
+  const { is_post, url_for } = props;
+
+  return (
     <Wrapper>
       <Content>
-        <Name>忘乎</Name>
-        <Tabs>
-          {tabs.map(({ type, isActive, content }) => (
-            <TabItem key={type}>
-              <TabItemLink
-                className={classNames({
-                  active: isActive(),
-                })}
-              >
-                {content}
-              </TabItemLink>
-            </TabItem>
-          ))}
-        </Tabs>
-        <SearchWrapper>
-          <Search>
-            <SearchInput placeholder="搜索文章" />
-          </Search>
-          <SearchButton>搜索</SearchButton>
-        </SearchWrapper>
-        <UserInfo>
-          <Menus>
-            <MenuItem>
-              <Notification />
-            </MenuItem>
-            <MenuItem>
-              <Comment />
-            </MenuItem>
-          </Menus>
-          <UserProfile src="https://avatars.githubusercontent.com/u/33797740?v=4" />
-        </UserInfo>
+        <Name href={url_for("/")}>忘乎</Name>
+        {is_post() ? <Post {...props} /> : <General {...props} />}
       </Content>
     </Wrapper>
   );
