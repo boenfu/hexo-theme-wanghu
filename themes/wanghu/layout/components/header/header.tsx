@@ -27,7 +27,9 @@ const Content = styled.div`
 `;
 
 const Name = styled.a`
-  width: 64px;
+  flex: none;
+  white-space: nowrap;
+  min-width: 64px;
   font-size: 30px;
   letter-spacing: 2px;
   color: #06f;
@@ -42,6 +44,7 @@ const Tabs = styled.ul`
 
 const TabItem = styled.li`
   padding: 0 15px;
+  white-space: nowrap;
 `;
 
 const TabItemLink = styled.a`
@@ -79,7 +82,7 @@ const TabItemLink = styled.a`
   }
 `;
 
-const SearchWrapper = styled.div`
+const SearchWrapper = styled.form`
   flex: 1;
   display: flex;
   align-items: center;
@@ -110,6 +113,7 @@ const SearchInput = styled.input`
   transition-property: background-color, border, color;
   transition-duration: 0.25s;
   transition-timing-function: ease-in;
+  outline: none;
 `;
 
 const SearchButton = styled.button`
@@ -196,31 +200,34 @@ const PostSource = styled.a`
 `;
 
 const General: FC<HexoComponentProps> = ({
+  page,
   is_home,
   is_category,
   is_archive,
   is_tag,
   url_for,
+  theme,
+  gravatar,
 }) => {
   const tabs: { type: string; isActive(): boolean; content: ReactNode }[] = [
     {
-      type: "home",
+      type: "",
       isActive: is_home,
       content: "首页",
     },
     {
-      type: "archive",
+      type: "archives",
       isActive: is_archive,
       content: "归档",
     },
     {
-      type: "category",
-      isActive: is_category,
+      type: "categories",
+      isActive: () => is_category() || page.path.startsWith("categories/"),
       content: "分类",
     },
     {
-      type: "tag",
-      isActive: is_tag,
+      type: "tags",
+      isActive: () => is_tag() || page.path.startsWith("tags/"),
       content: "标签",
     },
   ];
@@ -234,17 +241,23 @@ const General: FC<HexoComponentProps> = ({
               className={classNames({
                 active: isActive(),
               })}
+              href={url_for(`/${type}`)}
             >
               {content}
             </TabItemLink>
           </TabItem>
         ))}
       </Tabs>
-      <SearchWrapper>
+      <SearchWrapper id="search_form">
         <Search>
-          <SearchInput placeholder="搜索文章" />
+          <SearchInput
+            id="search_input"
+            placeholder="搜索文章"
+            type="search"
+            name="q"
+          />
         </Search>
-        <SearchButton>搜索</SearchButton>
+        <SearchButton type="submit">搜索</SearchButton>
       </SearchWrapper>
       <UserInfo>
         <Menus>
@@ -256,14 +269,20 @@ const General: FC<HexoComponentProps> = ({
           </MenuItem>
         </Menus>
         <a href={url_for("/about")}>
-          <UserProfile src="https://avatars.githubusercontent.com/u/33797740?v=4" />
+          <UserProfile
+            src={
+              theme.user.gravatar
+                ? gravatar(theme.user.gravatar)
+                : theme.user.avatar
+            }
+          />
         </a>
       </UserInfo>
     </>
   );
 };
 
-const Post: FC<HexoComponentProps> = ({ url_for }) => {
+const Post: FC<HexoComponentProps> = ({ url_for, theme, gravatar }) => {
   return (
     <>
       <PostHeader>
@@ -272,7 +291,13 @@ const Post: FC<HexoComponentProps> = ({ url_for }) => {
       </PostHeader>
       <UserInfo>
         <a href={url_for("/about")}>
-          <UserProfile src="https://avatars.githubusercontent.com/u/33797740?v=4" />
+          <UserProfile
+            src={
+              theme.user.gravatar
+                ? gravatar(theme.user.gravatar)
+                : theme.user.avatar
+            }
+          />
         </a>
       </UserInfo>
     </>
@@ -280,12 +305,12 @@ const Post: FC<HexoComponentProps> = ({ url_for }) => {
 };
 
 export const Header: FC<HexoComponentProps> = (props) => {
-  const { is_post, url_for } = props;
+  const { is_post, url_for, theme } = props;
 
   return (
     <Wrapper>
       <Content>
-        <Name href={url_for("/")}>忘乎</Name>
+        <Name href={url_for("/")}>{theme.title}</Name>
         {is_post() ? <Post {...props} /> : <General {...props} />}
       </Content>
     </Wrapper>

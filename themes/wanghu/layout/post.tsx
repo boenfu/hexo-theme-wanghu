@@ -1,16 +1,14 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import githubMarkdownCSS from "github-markdown-css";
 import { PageProvider } from "./_context";
 import { Locals } from "hexo";
+import { Comments, Markdown } from "./components";
 
 const Post = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
-
-  ${githubMarkdownCSS}
 `;
 
 const Main = styled.div`
@@ -105,8 +103,6 @@ const PostStatus = styled.div`
   color: #8590a6;
 `;
 
-const Markdown = styled.div``;
-
 const PostTime = styled.div`
   padding: 16px 0;
   font-size: 14px;
@@ -178,6 +174,7 @@ const RecommendItem = styled.a`
   border-radius: 5px;
   box-shadow: 0 6px 14px 0 rgb(18 18 18 / 6%);
   overflow: hidden;
+  background-color: #fff;
 `;
 
 const RecommendCover = styled.img`
@@ -224,7 +221,7 @@ const Recommends = styled.section`
 `;
 
 const Component: FC<HexoComponentProps> = (props) => {
-  const { page, url_for } = props;
+  const { page, url_for, js } = props;
 
   let titleImage = page.photos?.[0];
 
@@ -246,12 +243,7 @@ const Component: FC<HexoComponentProps> = (props) => {
               <Follow>已关注</Follow>
             </ProfileInfo>
             <PostStatus>100w 人赞同了该文章</PostStatus>
-            <Markdown
-              className="markdown-body"
-              dangerouslySetInnerHTML={{
-                __html: page.content,
-              }}
-            ></Markdown>
+            <Markdown content={page.content} />
             <PostTime>发布于 2022-04-01 15:46</PostTime>
             {page.tags?.length ? (
               <Tags>
@@ -312,6 +304,8 @@ const Component: FC<HexoComponentProps> = (props) => {
             </Recommends>
           </Footer>
         </Main>
+
+        {page.comments && <Comments hexo={props} />}
       </Post>
     </PageProvider>
   );

@@ -1,3 +1,5 @@
+const js = hexo.extend.helper.get("js").bind(hexo);
+
 hexo.extend.filter.register("after_render:html", function (str, _data) {
   return new Promise(async (ret) => {
     ret(`<!DOCTYPE html>
@@ -9,6 +11,7 @@ hexo.extend.filter.register("after_render:html", function (str, _data) {
         <style>${await getResetCSS()} a{text-decoration: none;}</style>
       </head>
       ${str}
+      ${js("/js/search.js")}
     </html>`);
   });
 });

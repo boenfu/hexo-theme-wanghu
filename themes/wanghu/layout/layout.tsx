@@ -25,7 +25,7 @@ const Component: FC<HexoComponentProps> = (props) => {
         dangerouslySetInnerHTML={{
           __html: body!,
         }}
-      ></Main>
+      />
     </Layout>
   );
 };

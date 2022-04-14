@@ -1,6 +1,6 @@
 import React, { FC } from "react";
 import styled from "styled-components";
-import { Posts } from "./components";
+import { Footer, Posts } from "./components";
 import { PageProvider } from "./_context";
 
 import Flash from "./icons/flash.svg";
@@ -9,7 +9,6 @@ const Index = styled.div`
   display: flex;
   align-items: flex-start;
   width: 1000px;
-  height: 100%;
   padding: 0 16px;
   margin: 0 auto;
 `;
@@ -63,7 +62,7 @@ const SocialItem = styled.li`
   }
 `;
 
-const SidebarSection = styled.ul`
+const SidebarSection = styled.section`
   box-sizing: border-box;
   display: flex;
   flex-wrap: wrap;
@@ -84,7 +83,7 @@ const LinkIcon = styled.div`
   margin-right: 10px;
 `;
 
-const Link = styled.li`
+const Link = styled.a`
   width: 100%;
   display: flex;
   height: 40px;
@@ -106,26 +105,8 @@ const Links = styled(SidebarSection)`
   padding: 8px 0;
 `;
 
-const Footer = styled.div`
-  display: flex;
-  flex-direction: column;
-  font-size: 13px;
-  line-height: 2;
-  padding-left: 5px;
-
-  a,
-  span {
-    color: #8590a6;
-    transition: all 0.2s linear;
-  }
-
-  a:hover {
-    color: #175199;
-  }
-`;
-
 const Component: FC<HexoComponentProps> = (props) => {
-  const { page } = props;
+  const { page, theme } = props;
 
   return (
     <PageProvider value={props}>
@@ -156,12 +137,7 @@ const Component: FC<HexoComponentProps> = (props) => {
               </Link>
             ))}
           </Links>
-          <Footer>
-            <span>刘看山</span>
-            <a href="www.baidu.com">蓉 ICP 证 10080 号</a>
-            <span>服务热线：400-919-0001</span>
-            <span>联系我们 @2022 忘乎</span>
-          </Footer>
+          <Footer data={theme.footers} />
         </Sidebar>
       </Index>
     </PageProvider>
