@@ -2,7 +2,6 @@ import React, { createElement, FC } from "react";
 import styled from "styled-components";
 import { PageProvider } from "./_context";
 
-import Flash from "./icons/flash.svg";
 import { Comments, Footer, Markdown } from "./components";
 import { Locals } from "hexo";
 import classNames from "classnames";
@@ -128,11 +127,6 @@ const SidebarSection = styled.section`
   background-color: #fff;
 `;
 
-const LinkIcon = styled.div`
-  font-size: 18px;
-  margin-right: 10px;
-`;
-
 const Link = styled.a`
   width: 100%;
   display: flex;
@@ -151,9 +145,42 @@ const Link = styled.a`
   }
 `;
 
-const Links = styled(SidebarSection)`
-  padding: 8px 0;
+const Achievements = styled.div`
+  padding: 12px 0;
+`;
 
+const Achievement = styled.div`
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+  height: 60px;
+  font-size: 15px;
+  padding: 6px 20px;
+  color: #646464;
+
+  > svg {
+    flex-shrink: 0;
+    width: 18px;
+    font-size: 1.2em;
+    margin-right: 8px;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: column;
+
+    span {
+      box-sizing: border-box;
+      margin: 0;
+      margin-top: 6px;
+      font-size: 14px;
+      line-height: 20px;
+      color: #8590a6;
+    }
+  }
+`;
+
+const List = styled(SidebarSection)`
   &.created {
     background-color: transparent;
     box-shadow: none;
@@ -170,6 +197,18 @@ const Links = styled(SidebarSection)`
         color: #8590a6;
       }
     }
+  }
+
+  > h2 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 0 20px;
+    border-bottom: 1px solid #f6f6f6;
+    box-sizing: border-box;
+    color: #646464;
   }
 `;
 
@@ -216,7 +255,45 @@ const Tab = styled.a`
   }
 `;
 
-const Follow = styled(SidebarSection)``;
+const Follow = styled(SidebarSection)`
+  height: 75px;
+  display: flex;
+
+  a {
+    flex: 1;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.2s linear;
+    cursor: pointer;
+
+    &:hover {
+      * {
+        color: #175199 !important;
+      }
+    }
+  }
+
+  a + a {
+    border-left: 1px solid #ebebeb;
+  }
+
+  span {
+    font-size: 14px;
+    color: #8590a6;
+    line-height: 1.6;
+  }
+
+  i {
+    line-height: 1.6;
+    font-size: 18px;
+    color: #121212;
+    font-weight: 600;
+    font-synthesis: style;
+  }
+`;
 
 const About: FC<HexoComponentProps> = (props) => {
   const { page } = props;
@@ -247,7 +324,7 @@ const About: FC<HexoComponentProps> = (props) => {
 };
 
 const Component: FC<HexoComponentProps> = (props) => {
-  const { page, gravatar, url_for, theme } = props;
+  const { page, gravatar, svgr, url_for, theme } = props;
 
   let route = page.path.split("/")[0];
 
@@ -272,7 +349,7 @@ const Component: FC<HexoComponentProps> = (props) => {
     },
     follows: {
       title: "关注",
-      count: page.tags.length,
+      count: theme.following.length,
       content: "",
     },
     messages: {
@@ -289,6 +366,7 @@ const Component: FC<HexoComponentProps> = (props) => {
     name,
     description,
     profile,
+    followers,
     achievements,
   } = theme.user ?? {};
 
@@ -337,21 +415,41 @@ const Component: FC<HexoComponentProps> = (props) => {
           </Content>
 
           <Sidebar>
-            <Links>
-              {achievements?.length
-                ? achievements.map(({ icon, title, description }, index) => (
-                    <Link key={index}>
-                      <LinkIcon>
-                        {typeof icon === "string" ? icon : icon.src}
-                      </LinkIcon>
-                      {title}
-                      {description}
-                    </Link>
-                  ))
-                : undefined}
-            </Links>
+            <List>
+              <h2>个人成就</h2>
+              <Achievements>
+                {achievements?.length
+                  ? achievements.map(({ icon, title, description }, index) => {
+                      let { src, ...props } =
+                        typeof icon === "string" ? { src: icon } : icon;
 
-            <Links className="created">
+                      return (
+                        <Achievement key={index}>
+                          {createElement(svgr(src), props)}
+                          <div>
+                            {title}
+                            <span>{description}</span>
+                          </div>
+                        </Achievement>
+                      );
+                    })
+                  : undefined}
+              </Achievements>
+            </List>
+
+            <Follow>
+              <a href={url_for("/follows")}>
+                <span>关注了</span>
+                <i>{theme.following.length ?? 0}</i>
+              </a>
+
+              <a>
+                <span>关注者</span>
+                <i>{followers}</i>
+              </a>
+            </Follow>
+
+            <List className="created">
               <Link href={url_for("/index")}>
                 创建的文章 <span>{page.posts.length}</span>
               </Link>
@@ -363,7 +461,7 @@ const Component: FC<HexoComponentProps> = (props) => {
               <Link href={url_for("/tag")}>
                 创建的标签 <span>{page.tags.length}</span>
               </Link>
-            </Links>
+            </List>
             <Footer data={theme.footers} />
           </Sidebar>
         </Main>

@@ -75,14 +75,22 @@ const defaultConfig: WanghuConfig = {
     cover: "https://avatars.githubusercontent.com/u/33797740?v=4",
     achievements: [
       {
-        title: "优秀答主",
-        icon: "icons/a",
-        description: "前端开发 话题",
+        title: "2022年度熬夜冠军",
+        icon: {
+          src: "assets/moon",
+          color: "gold",
+        },
+        description: "凌晨四点的爱丁堡",
       },
       {
-        title: "获得 1,024 次赞同",
-        icon: "icons/a",
-        description: "获得 512 次喜欢，512 次收藏",
+        title: "书籍成色记录保持者",
+        icon: "assets/book-opened",
+        description: "闲鱼认证 9.99 成新",
+      },
+      {
+        title: "日均 1,024 次搜索",
+        icon: "assets/google",
+        description: "执行 648 次 Ctrl + C",
       },
     ],
     profile: {
