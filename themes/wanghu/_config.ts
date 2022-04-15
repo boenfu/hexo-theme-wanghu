@@ -1,5 +1,5 @@
 export interface WanghuUser {
-  name?: string;
+  name: string;
   description?: string;
   avatar?: string;
   /**
@@ -8,7 +8,7 @@ export interface WanghuUser {
   gravatar?: string;
 }
 
-interface ExtraProfile {
+export interface WanghuUserProfile {
   city?: string;
   industry?: string;
   job?: string;
@@ -23,7 +23,7 @@ export interface WanghuConfig {
    */
   user: WanghuUser & {
     cover: string;
-    profile: ExtraProfile;
+    profile: WanghuUserProfile;
     achievements: {
       title: string;
       icon:
@@ -71,6 +71,8 @@ export interface WanghuConfig {
 const defaultConfig: WanghuConfig = {
   title: "忘乎",
   user: {
+    name: "Boen",
+    description: "前端工程师",
     gravatar: "1997@boenfu.cn",
     cover: "https://avatars.githubusercontent.com/u/33797740?v=4",
     achievements: [
@@ -97,6 +99,7 @@ const defaultConfig: WanghuConfig = {
       city: "Chengdu",
       industry: "Internet",
       job: "Frontend Engineer",
+      school: "Jialidun University",
     },
     followers: 9981,
   },

@@ -5,6 +5,10 @@ import { PageProvider } from "./_context";
 import { Comments, Footer, Markdown } from "./components";
 import { Locals } from "hexo";
 import classNames from "classnames";
+import { Profile as UserProfile } from "./@user";
+
+import Add from "./icons/add.svg";
+import Comment from "./icons/comment.svg";
 
 const User = styled.div`
   display: flex;
@@ -59,12 +63,10 @@ const ProfileInfo = styled.div`
 `;
 
 const ProfileName = styled.div`
-  font-size: 15px;
   color: #121212;
   position: relative;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   margin-bottom: 16px;
 
   h1 {
@@ -73,11 +75,19 @@ const ProfileName = styled.div`
     font-weight: 600;
     font-synthesis: style;
   }
+
+  span {
+    margin-left: 12px;
+    font-size: 18px;
+    white-space: nowrap;
+    word-break: break-word;
+    line-height: 1.6;
+  }
 `;
 
 const Profile = styled.section`
-  flex: none;
   position: relative;
+  flex: none;
   width: 100%;
   box-sizing: border-box;
   margin-top: 10px;
@@ -85,6 +95,57 @@ const Profile = styled.section`
   box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
   background: #fff;
   overflow: hidden;
+`;
+
+const Actions = styled.div`
+  position: absolute;
+  right: 20px;
+  bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  a + a {
+    margin-left: 16px;
+  }
+`;
+
+const FollowHe = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  font-size: 14px;
+  line-height: 32px;
+  background: #06f;
+  border: 1px solid #06f;
+  border-radius: 3px;
+  color: #fff;
+  margin-left: 16px;
+
+  svg {
+    font-size: 1.2em;
+    margin-right: 8px;
+  }
+`;
+
+const SendMessage = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 16px;
+  font-size: 14px;
+  line-height: 32px;
+  background: none;
+  border: 1px solid #8590a6;
+  border-radius: 3px;
+  color: #8590a6;
+  margin-left: 16px;
+
+  svg {
+    margin-right: 4px;
+  }
 `;
 
 const Main = styled.div`
@@ -387,9 +448,17 @@ const Component: FC<HexoComponentProps> = (props) => {
             <ProfileContent>
               <ProfileName>
                 <h1>{name}</h1>
+                <span>{description}</span>
               </ProfileName>
+              <UserProfile {...profile} />
             </ProfileContent>
           </ProfileInfo>
+          <Actions>
+            <FollowHe href={url_for("/messages")}>{<Add />}关注他</FollowHe>
+            <SendMessage href={url_for("/messages")}>
+              {<Comment />}写留言
+            </SendMessage>
+          </Actions>
         </Profile>
         <Main>
           <Content>
