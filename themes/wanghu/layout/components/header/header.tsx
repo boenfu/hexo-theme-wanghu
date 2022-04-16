@@ -220,11 +220,11 @@ const General: FC<HexoComponentProps> = ({
       isActive: is_archive,
       content: "归档",
     },
-    {
-      type: "categories",
-      isActive: () => is_category() || page.path.startsWith("categories/"),
-      content: "分类",
-    },
+    // {
+    //   type: "categories",
+    //   isActive: () => is_category() || page.path.startsWith("categories/"),
+    //   content: "分类",
+    // },
     {
       type: "tags",
       isActive: () => is_tag() || page.path.startsWith("tags/"),

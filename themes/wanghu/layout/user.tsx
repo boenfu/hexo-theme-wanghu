@@ -4,7 +4,13 @@ import { PageProvider } from "./_context";
 
 import { Footer } from "./components";
 import classNames from "classnames";
-import { About, Messages, Profile as UserProfile } from "./@user";
+import {
+  About,
+  Categories,
+  Messages,
+  Profile as UserProfile,
+  Tags,
+} from "./@user";
 
 import Add from "./icons/add.svg";
 import Comment from "./icons/comment.svg";
@@ -372,12 +378,12 @@ const Component: FC<HexoComponentProps> = (props) => {
     categories: {
       title: "分类",
       count: page.categories.length,
-      content: "",
+      content: Categories,
     },
     tags: {
       title: "标签",
       count: page.tags.length,
-      content: "",
+      content: Tags,
     },
     follows: {
       title: "关注",
