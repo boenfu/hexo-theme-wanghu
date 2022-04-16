@@ -26,12 +26,7 @@ export interface WanghuConfig {
     profile: WanghuUserProfile;
     achievements: {
       title: string;
-      icon:
-        | string
-        | {
-            src: string;
-            color: string;
-          };
+      icon: string;
       description?: string;
     }[];
     /**
@@ -51,9 +46,9 @@ export interface WanghuConfig {
    */
   menus: {
     icon: string;
-    color: string;
     text: string;
     url: string;
+    color?: string;
   }[];
   footers: {
     content: string;
@@ -85,20 +80,17 @@ const defaultConfig: WanghuConfig = {
     achievements: [
       {
         title: "2022年度熬夜冠军",
-        icon: {
-          src: "assets/moon",
-          color: "gold",
-        },
+        icon: "/assets/moon.svg",
         description: "见过凌晨四点的爱丁堡",
       },
       {
         title: "书籍成色记录保持者",
-        icon: "assets/book-opened",
+        icon: "/assets/book-opened.svg",
         description: "闲鱼认证 9.99 成新",
       },
       {
         title: "日均 1,024 次搜索",
-        icon: "assets/google",
+        icon: "/assets/google.svg",
         description: "执行 648 次 Ctrl + C",
       },
     ],
@@ -122,19 +114,19 @@ const defaultConfig: WanghuConfig = {
   menus: [
     {
       text: "Github",
-      icon: "assets/github",
+      icon: "/assets/github.svg",
       color: "#24292f",
       url: "https://github.com/boenfu",
     },
     {
       text: "Twitter",
-      icon: "assets/twitter",
+      icon: "/assets/twitter.svg",
       color: "#1d9bf0",
       url: "https://twitter.com/boenfu",
     },
     {
       text: "Mail",
-      icon: "assets/gmail",
+      icon: "/assets/gmail.svg",
       color: "#333",
       url: "mailto:sonebobo@gmail.com",
     },

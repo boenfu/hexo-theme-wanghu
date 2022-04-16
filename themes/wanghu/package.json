@@ -1,0 +1,38 @@
+{
+  "name": "hexo-theme-wanghu",
+  "version": "0.1.0",
+  "author": "boenfu (https://github.com/boenfu)",
+  "description": "🔥 A normal hexo theme.",
+  "keywords": [
+    "hexo",
+    "theme",
+    "wanghu",
+    "zhihu"
+  ],
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/boenfu/hexo-theme-wanghu.git"
+  },
+  "bugs": {
+    "url": "https://github.com/boenfu/hexo-theme-wanghu/issues"
+  },
+  "homepage": "https://www.wanghu.xyz/",
+  "dependencies": {
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@types/styled-components": "^5.1.25",
+    "classnames": "^2.3.1",
+    "github-markdown-css": "^5.1.0",
+    "hexo-generator-feed": "^3.0.0",
+    "hexo-generator-sitemap": "^3.0.1",
+    "hexo-renderer-markdown-it": "^4.1.0",
+    "hexo-renderer-react-styled": "^0.12.0",
+    "json-to-pretty-yaml": "^1.2.2",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "reading-time": "^1.5.0",
+    "styled-components": "^5.3.5",
+    "typescript": "^4.6.3"
+  }
+}

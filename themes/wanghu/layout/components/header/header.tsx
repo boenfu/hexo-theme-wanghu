@@ -201,12 +201,12 @@ const PostSource = styled.a`
 
 const General: FC<HexoComponentProps> = ({
   page,
+  config,
+  theme,
   is_home,
-  is_category,
   is_archive,
   is_tag,
   url_for,
-  theme,
   gravatar,
   __,
 }) => {
@@ -262,9 +262,21 @@ const General: FC<HexoComponentProps> = ({
       </SearchWrapper>
       <UserInfo>
         <Menus>
-          <MenuItem>
-            <Notification />
-          </MenuItem>
+          {config.feed ? (
+            <MenuItem
+              href={url_for(
+                `/${
+                  Array.isArray(config.feed.path)
+                    ? config.feed.path[0]
+                    : config.feed.path
+                }`
+              )}
+              title="rss"
+            >
+              <Notification />
+            </MenuItem>
+          ) : undefined}
+
           <MenuItem href={url_for("/messages")} title={__("user.send_message")}>
             <Comment />
           </MenuItem>

@@ -31,10 +31,11 @@ const Achievement = styled.div`
   padding: 6px 20px;
   color: #646464;
 
-  > svg {
+  > img {
     flex-shrink: 0;
     width: 18px;
-    font-size: 1.2em;
+    height: 18px;
+    object-fit: cover;
     margin-right: 8px;
   }
 
@@ -54,7 +55,7 @@ const Achievement = styled.div`
 `;
 
 export const Achievements: FC = () => {
-  const { theme, svgr, __ } = usePage();
+  const { theme, __ } = usePage();
 
   let { achievements } = theme.user ?? {};
 
@@ -64,12 +65,9 @@ export const Achievements: FC = () => {
       <Wrapper>
         {achievements?.length
           ? achievements.map(({ icon, title, description }, index) => {
-              let { src, ...props } =
-                typeof icon === "string" ? { src: icon } : icon;
-
               return (
                 <Achievement key={index}>
-                  {createElement(svgr(src), props)}
+                  <img src={icon} alt={title} />
                   <div>
                     {title}
                     <span>{description}</span>

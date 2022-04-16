@@ -14,6 +14,12 @@ const MenuIcon = styled.div`
   font-size: 25px;
   color: currentColor;
   margin-bottom: 10px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
 
 const MenuLabel = styled.div`
@@ -41,17 +47,16 @@ const MenuItem = styled.a`
 export const Menus: FC = () => {
   const {
     theme: { menus = [] },
-    svgr,
   } = usePage();
 
   return (
     <Wrapper>
       {menus.map(({ icon, text, url, color }, index) => {
-        let { src, ...props } = typeof icon === "string" ? { src: icon } : icon;
-
         return (
           <MenuItem key={index} href={url} style={{ color }}>
-            <MenuIcon>{createElement(svgr(src), props)}</MenuIcon>
+            <MenuIcon>
+              <img src={icon} alt={text} />
+            </MenuIcon>
             <MenuLabel>{text}</MenuLabel>
           </MenuItem>
         );

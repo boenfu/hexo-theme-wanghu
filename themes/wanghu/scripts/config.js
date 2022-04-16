@@ -2,6 +2,7 @@
 const logger = require("hexo-log")();
 const path = require("path");
 const fs = require("fs");
+const YAML = require("json-to-pretty-yaml");
 
 // 检测是否有主题配置文件
 logger.info("[Wanghu] Checking theme configurations");
@@ -11,7 +12,7 @@ themeF = themeF[themeF.length - 2];
 
 let sitePC =
   themeF !== "hexo-theme-wanghu"
-    ? path.join(hexo.base_dir, `_config.${themeF}.json`)
+    ? path.join(hexo.base_dir, `_config.${themeF}.yml`)
     : path.join(hexo.base_dir, `_config.wanghu.yml`);
 
 if (!fs.existsSync(sitePC)) {
@@ -20,5 +21,5 @@ if (!fs.existsSync(sitePC)) {
 
   const themePC = path.join(hexo.theme_dir, "_config.ts");
 
-  fs.writeFileSync(sitePC, JSON.stringify(require(themePC), undefined, 2));
+  fs.writeFileSync(sitePC, YAML.stringify(require(themePC), undefined, 2));
 }
