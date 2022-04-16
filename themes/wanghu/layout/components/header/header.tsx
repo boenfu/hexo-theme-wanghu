@@ -264,7 +264,7 @@ const General: FC<HexoComponentProps> = ({
           <MenuItem>
             <Notification />
           </MenuItem>
-          <MenuItem>
+          <MenuItem href={url_for("/messages")}>
             <Comment />
           </MenuItem>
         </Menus>

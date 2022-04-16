@@ -75,6 +75,7 @@ const Content = styled.div`
 const Image = styled.a`
   height: 105px;
   margin-left: 16px;
+  background-color: #eee;
 
   img {
     display: block;
@@ -127,12 +128,7 @@ export const Item: FC<{
         </Metrics>
       </Content>
       <Image href={postUrl}>
-        <img
-          src={
-            post.photos?.[0] ||
-            "https://pic2.zhimg.com/80/v2-df1dcbeb8412dd1a0500f9c5773b4575_720w.jpg?source=1940ef5c"
-          }
-        />
+        <img src={post.photos?.[0]} />
       </Image>
     </Wrapper>
   );

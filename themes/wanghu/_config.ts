@@ -38,6 +38,10 @@ export interface WanghuConfig {
      * just fill it in and have a good time
      */
     followers: number;
+    /**
+     * follow button link to
+     */
+    follow_link?: string;
   };
   following: WanghuUser[];
   /**
@@ -102,6 +106,7 @@ const defaultConfig: WanghuConfig = {
       school: "Jialidun University",
     },
     followers: 9981,
+    follow_link: "https://www.zhihu.com/people/geesang",
   },
   following: [
     {

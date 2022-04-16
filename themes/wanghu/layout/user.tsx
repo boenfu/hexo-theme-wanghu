@@ -2,10 +2,9 @@ import React, { createElement, FC } from "react";
 import styled from "styled-components";
 import { PageProvider } from "./_context";
 
-import { Comments, Footer, Markdown } from "./components";
-import { Locals } from "hexo";
+import { Footer } from "./components";
 import classNames from "classnames";
-import { Profile as UserProfile } from "./@user";
+import { About, Messages, Profile as UserProfile } from "./@user";
 
 import Add from "./icons/add.svg";
 import Comment from "./icons/comment.svg";
@@ -356,34 +355,6 @@ const Follow = styled(SidebarSection)`
   }
 `;
 
-const About: FC<HexoComponentProps> = (props) => {
-  const { page } = props;
-
-  let about = (
-    page.posts
-      .filter((post: Locals.Post) => post.source.startsWith("_posts/markdown"))
-      .toArray()?.[0] as Locals.Post | undefined
-  )?.content;
-
-  return (
-    <>
-      <Markdown
-        style={{
-          padding: "16px 20px",
-        }}
-        content={about ?? "Ta 还没有准备好介绍自己"}
-      />
-
-      <Comments
-        style={{
-          padding: "16px 20px",
-        }}
-        hexo={props}
-      />
-    </>
-  );
-};
-
 const Component: FC<HexoComponentProps> = (props) => {
   const { page, gravatar, svgr, url_for, theme } = props;
 
@@ -416,7 +387,7 @@ const Component: FC<HexoComponentProps> = (props) => {
     messages: {
       title: "留言",
       count: undefined,
-      content: "",
+      content: Messages,
     },
   };
 
@@ -428,6 +399,7 @@ const Component: FC<HexoComponentProps> = (props) => {
     description,
     profile,
     followers,
+    follow_link,
     achievements,
   } = theme.user ?? {};
 
@@ -454,7 +426,7 @@ const Component: FC<HexoComponentProps> = (props) => {
             </ProfileContent>
           </ProfileInfo>
           <Actions>
-            <FollowHe href={url_for("/messages")}>{<Add />}关注他</FollowHe>
+            <FollowHe href={follow_link}>{<Add />}关注他</FollowHe>
             <SendMessage href={url_for("/messages")}>
               {<Comment />}写留言
             </SendMessage>
