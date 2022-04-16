@@ -1,15 +1,14 @@
 import React, { FC, HtmlHTMLAttributes } from "react";
 import styled from "styled-components";
+import { usePage } from "../_context";
 
 const Wrapper = styled.section`
   background-color: #fff;
   min-height: 300px;
 `;
 
-export const Comments: FC<
-  { hexo: HexoComponentProps } & HtmlHTMLAttributes<HTMLDivElement>
-> = ({ hexo: { js, theme }, ...props }) => {
-  console.log();
+export const Comments: FC<HtmlHTMLAttributes<HTMLDivElement>> = (props) => {
+  const { js, theme } = usePage();
 
   let utteranc = theme.comments?.utteranc;
 

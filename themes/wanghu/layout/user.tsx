@@ -2,13 +2,14 @@ import React, { createElement, FC } from "react";
 import styled from "styled-components";
 import { PageProvider } from "./_context";
 
-import { Footer } from "./components";
 import classNames from "classnames";
 import {
   About,
   Categories,
+  Following,
   Messages,
   Profile as UserProfile,
+  Sidebar,
   Tags,
 } from "./@user";
 
@@ -175,109 +176,6 @@ const Content = styled.div`
   overflow: hidden;
 `;
 
-const Sidebar = styled.div`
-  position: sticky;
-  top: 10px;
-  flex: 1;
-`;
-
-const SidebarSection = styled.section`
-  box-sizing: border-box;
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 10px;
-  background: #fff;
-  border-radius: 2px;
-  box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
-  overflow: hidden;
-  background-color: #fff;
-`;
-
-const Link = styled.a`
-  width: 100%;
-  display: flex;
-  height: 40px;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 0 20px;
-  font-size: 14px;
-  color: #8590a6;
-  transition: all 0.2s linear;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #f6f6f6;
-    color: #76839b;
-  }
-`;
-
-const Achievements = styled.div`
-  padding: 12px 0;
-`;
-
-const Achievement = styled.div`
-  display: flex;
-  align-items: flex-start;
-  box-sizing: border-box;
-  height: 60px;
-  font-size: 15px;
-  padding: 6px 20px;
-  color: #646464;
-
-  > svg {
-    flex-shrink: 0;
-    width: 18px;
-    font-size: 1.2em;
-    margin-right: 8px;
-  }
-
-  > div {
-    display: flex;
-    flex-direction: column;
-
-    span {
-      box-sizing: border-box;
-      margin: 0;
-      margin-top: 6px;
-      font-size: 14px;
-      line-height: 20px;
-      color: #8590a6;
-    }
-  }
-`;
-
-const List = styled(SidebarSection)`
-  &.created {
-    background-color: transparent;
-    box-shadow: none;
-
-    ${Link} {
-      justify-content: space-between;
-      padding: 0;
-      padding-left: 5px;
-      height: 46px;
-      border-top: 1px solid #ebebeb;
-      color: #646464;
-
-      span {
-        color: #8590a6;
-      }
-    }
-  }
-
-  > h2 {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 50px;
-    padding: 0 20px;
-    border-bottom: 1px solid #f6f6f6;
-    box-sizing: border-box;
-    color: #646464;
-  }
-`;
-
 const Tabs = styled.div`
   display: flex;
   align-items: center;
@@ -321,48 +219,8 @@ const Tab = styled.a`
   }
 `;
 
-const Follow = styled(SidebarSection)`
-  height: 75px;
-  display: flex;
-
-  a {
-    flex: 1;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    transition: all 0.2s linear;
-    cursor: pointer;
-
-    &:hover {
-      * {
-        color: #175199 !important;
-      }
-    }
-  }
-
-  a + a {
-    border-left: 1px solid #ebebeb;
-  }
-
-  span {
-    font-size: 14px;
-    color: #8590a6;
-    line-height: 1.6;
-  }
-
-  i {
-    line-height: 1.6;
-    font-size: 18px;
-    color: #121212;
-    font-weight: 600;
-    font-synthesis: style;
-  }
-`;
-
 const Component: FC<HexoComponentProps> = (props) => {
-  const { page, gravatar, svgr, url_for, theme } = props;
+  const { page, gravatar, url_for, theme, __ } = props;
 
   let route = page.path.split("/")[0];
 
@@ -371,27 +229,27 @@ const Component: FC<HexoComponentProps> = (props) => {
     { title: string; count: number | undefined; content: any }
   > = {
     about: {
-      title: "关于",
+      title: __("about"),
       count: undefined,
       content: About,
     },
     categories: {
-      title: "分类",
+      title: __("categories"),
       count: page.categories.length,
       content: Categories,
     },
     tags: {
-      title: "标签",
+      title: __("tags"),
       count: page.tags.length,
       content: Tags,
     },
-    follows: {
-      title: "关注",
+    following: {
+      title: __("following"),
       count: theme.following.length,
-      content: "",
+      content: Following,
     },
     messages: {
-      title: "留言",
+      title: __("messages"),
       count: undefined,
       content: Messages,
     },
@@ -403,10 +261,7 @@ const Component: FC<HexoComponentProps> = (props) => {
     avatar,
     name,
     description,
-    profile,
-    followers,
-    follow_link,
-    achievements,
+    follow_url,
   } = theme.user ?? {};
 
   return (
@@ -428,13 +283,17 @@ const Component: FC<HexoComponentProps> = (props) => {
                 <h1>{name}</h1>
                 <span>{description}</span>
               </ProfileName>
-              <UserProfile {...profile} />
+              <UserProfile />
             </ProfileContent>
           </ProfileInfo>
           <Actions>
-            <FollowHe href={follow_link}>{<Add />}关注他</FollowHe>
+            <FollowHe href={follow_url}>
+              {<Add />}
+              {__("user.follow_he")}
+            </FollowHe>
             <SendMessage href={url_for("/messages")}>
-              {<Comment />}写留言
+              {<Comment />}
+              {__("user.send_message")}
             </SendMessage>
           </Actions>
         </Profile>
@@ -460,57 +319,7 @@ const Component: FC<HexoComponentProps> = (props) => {
             </Tabs>
             {createElement(tabs[route]?.content || (() => ""), props)}
           </Content>
-
-          <Sidebar>
-            <List>
-              <h2>个人成就</h2>
-              <Achievements>
-                {achievements?.length
-                  ? achievements.map(({ icon, title, description }, index) => {
-                      let { src, ...props } =
-                        typeof icon === "string" ? { src: icon } : icon;
-
-                      return (
-                        <Achievement key={index}>
-                          {createElement(svgr(src), props)}
-                          <div>
-                            {title}
-                            <span>{description}</span>
-                          </div>
-                        </Achievement>
-                      );
-                    })
-                  : undefined}
-              </Achievements>
-            </List>
-
-            <Follow>
-              <a href={url_for("/follows")}>
-                <span>关注了</span>
-                <i>{theme.following.length ?? 0}</i>
-              </a>
-
-              <a>
-                <span>关注者</span>
-                <i>{followers}</i>
-              </a>
-            </Follow>
-
-            <List className="created">
-              <Link href={url_for("/index")}>
-                创建的文章 <span>{page.posts.length}</span>
-              </Link>
-
-              <Link href={url_for("/category")}>
-                创建的分类 <span>{page.categories.length}</span>
-              </Link>
-
-              <Link href={url_for("/tag")}>
-                创建的标签 <span>{page.tags.length}</span>
-              </Link>
-            </List>
-            <Footer data={theme.footers} />
-          </Sidebar>
+          <Sidebar />
         </Main>
       </User>
     </PageProvider>

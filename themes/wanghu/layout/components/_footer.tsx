@@ -26,13 +26,26 @@ export const Footer: FC<
 > = ({ data, ...props }) => {
   return (
     <Wrapper {...props}>
-      {data.map(({ text, url }, index) =>
+      {data.map(({ content, url, html }, index) =>
         url ? (
-          <a key={index} href={url}>
-            {text}
-          </a>
+          <a
+            key={index}
+            href={url}
+            {...(html
+              ? {
+                  dangerouslySetInnerHTML: { __html: content },
+                }
+              : { children: content })}
+          />
         ) : (
-          <span key={index}>{text}</span>
+          <span
+            key={index}
+            {...(html
+              ? {
+                  dangerouslySetInnerHTML: { __html: content },
+                }
+              : { children: content })}
+          />
         )
       )}
     </Wrapper>

@@ -1,4 +1,4 @@
-["about", "categories", "tags", "follows", "messages"].forEach((type) => {
+["about", "categories", "tags", "following", "messages"].forEach((type) => {
   hexo.extend.generator.register(type, function (locals) {
     return {
       path: `${type}/index.html`,

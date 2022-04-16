@@ -4,6 +4,7 @@ import { Footer, Posts } from "./components";
 import { PageProvider } from "./_context";
 
 import Flash from "./icons/flash.svg";
+import { Menus } from "./@index";
 
 const Index = styled.div`
   display: flex;
@@ -32,36 +33,6 @@ const Sidebar = styled.div`
   flex: 1;
 `;
 
-const SocialIcon = styled.div`
-  width: 25px;
-  height: 25px;
-  font-size: 25px;
-  color: rgb(255, 207, 0);
-  margin-bottom: 10px;
-`;
-
-const SocialLabel = styled.div`
-  font-size: 15px;
-  color: #8590a6;
-  transition: all 0.2s linear;
-`;
-
-const SocialItem = styled.li`
-  width: 33%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 25px;
-  cursor: pointer;
-
-  &:hover {
-    ${SocialLabel} {
-      color: rgb(255, 207, 0);
-    }
-  }
-`;
-
 const SidebarSection = styled.section`
   box-sizing: border-box;
   display: flex;
@@ -72,10 +43,6 @@ const SidebarSection = styled.section`
   box-shadow: 0 1px 3px rgb(18 18 18 / 10%);
   overflow: hidden;
   background-color: #fff;
-`;
-
-const Socials = styled(SidebarSection)`
-  padding: 20px 10px 0;
 `;
 
 const LinkIcon = styled.div`
@@ -117,16 +84,7 @@ const Component: FC<HexoComponentProps> = (props) => {
           </Content>
         </Main>
         <Sidebar>
-          <Socials>
-            {[1, 2, 3, 4].map((item, index) => (
-              <SocialItem key={index}>
-                <SocialIcon>
-                  <Flash />
-                </SocialIcon>
-                <SocialLabel>{item}</SocialLabel>
-              </SocialItem>
-            ))}
-          </Socials>
+          <Menus />
           <Links>
             {["我的余额", "为0", "为0", "为0"].map((item, index) => (
               <Link key={index}>

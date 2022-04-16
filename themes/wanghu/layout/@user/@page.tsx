@@ -2,6 +2,7 @@ import { Locals } from "hexo";
 import React, { FC } from "react";
 import styled from "styled-components";
 import { Comments, Markdown } from "../components";
+import { usePage } from "../_context";
 
 const Placeholder = styled.div`
   font-size: 13px;
@@ -11,11 +12,10 @@ const Placeholder = styled.div`
 `;
 
 export const MarkdownPage: FC<{
-  hexo: HexoComponentProps;
   file: string;
   placeholder: string;
-}> = ({ file, placeholder, hexo }) => {
-  const { page } = hexo;
+}> = ({ file, placeholder }) => {
+  const { page, __ } = usePage();
 
   let content = (
     page.posts
@@ -33,14 +33,13 @@ export const MarkdownPage: FC<{
           content={content}
         />
       ) : (
-        <Placeholder>{placeholder}</Placeholder>
+        <Placeholder>{__(`user.${placeholder}`)}</Placeholder>
       )}
 
       <Comments
         style={{
           padding: "16px 20px",
         }}
-        hexo={hexo}
       />
     </>
   );

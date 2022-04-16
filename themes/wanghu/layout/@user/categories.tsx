@@ -1,6 +1,7 @@
 import React from "react";
 import { FC } from "react";
 import styled from "styled-components";
+import { usePage } from "../_context";
 
 const Wrapper = styled.div`
   h4 {
@@ -35,10 +36,11 @@ const Wrapper = styled.div`
   }
 `;
 
-export const Categories: FC<HexoComponentProps> = ({ site, url_for }) => {
+export const Categories: FC = () => {
+  const { site, url_for, __ } = usePage();
   return (
     <Wrapper>
-      <h4>他的分类</h4>
+      <h4>{__("user.categories_sub_title")}</h4>
       <section>
         {site.categories.toArray().map((category, index) => (
           <a key={index} href={url_for(category.path)}>

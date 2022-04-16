@@ -1,0 +1,24 @@
+{
+  "index": "首页",
+  "posts": "文章",
+  "tags": "标签",
+  "categories": "分类",
+  "archives": "归档",
+  "about": "关于",
+  "messages": "留言",
+  "following": "关注",
+  "search_placeholder": "搜索文章",
+  "search": "搜索",
+  "user": {
+    "achievements": "个人成就",
+    "following": "关注了",
+    "followers": "关注者",
+    "follow_he": "关注他",
+    "send_message": "写留言",
+    "categories_sub_title": "他的分类",
+    "following_sub_title": "他关注的人",
+    "created_text": "创建的",
+    "about_placeholder": "Ta 还没有准备好介绍自己",
+    "message_placeholder": "有什么想说的，请给我留言～"
+  }
+}

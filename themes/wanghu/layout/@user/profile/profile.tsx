@@ -5,6 +5,7 @@ import { Item } from "./@item";
 import City from "./city.svg";
 import Industry from "./industry.svg";
 import Education from "./education.svg";
+import { usePage } from "../../_context";
 
 const Wrapper = styled.div`
   > div + div {
@@ -12,13 +13,11 @@ const Wrapper = styled.div`
   }
 `;
 
-export const Profile: FC<HexoComponentProps["theme"]["user"]["profile"]> = ({
-  city,
-  industry,
-  job,
-  school,
-  major,
-}) => {
+export const Profile: FC = () => {
+  const { theme } = usePage();
+
+  let { city, industry, job, school, major } = theme.user?.profile ?? {};
+
   return (
     <Wrapper>
       <Item icon={<City />} texts={[city]} />

@@ -208,17 +208,18 @@ const General: FC<HexoComponentProps> = ({
   url_for,
   theme,
   gravatar,
+  __,
 }) => {
   const tabs: { type: string; isActive(): boolean; content: ReactNode }[] = [
     {
       type: "",
       isActive: is_home,
-      content: "首页",
+      content: __("index"),
     },
     {
       type: "archives",
       isActive: is_archive,
-      content: "归档",
+      content: __("archives"),
     },
     // {
     //   type: "categories",
@@ -228,7 +229,7 @@ const General: FC<HexoComponentProps> = ({
     {
       type: "tags",
       isActive: () => is_tag() || page.path.startsWith("tags/"),
-      content: "标签",
+      content: __("tags"),
     },
   ];
 
@@ -252,23 +253,23 @@ const General: FC<HexoComponentProps> = ({
         <Search>
           <SearchInput
             id="search_input"
-            placeholder="搜索文章"
+            placeholder={__("search_placeholder")}
             type="search"
             name="q"
           />
         </Search>
-        <SearchButton type="submit">搜索</SearchButton>
+        <SearchButton type="submit">{__("search")}</SearchButton>
       </SearchWrapper>
       <UserInfo>
         <Menus>
           <MenuItem>
             <Notification />
           </MenuItem>
-          <MenuItem href={url_for("/messages")}>
+          <MenuItem href={url_for("/messages")} title={__("user.send_message")}>
             <Comment />
           </MenuItem>
         </Menus>
-        <a href={url_for("/about")}>
+        <a href={url_for("/about")} title={__("about")}>
           <UserProfile
             src={
               theme.user.gravatar

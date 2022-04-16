@@ -2,9 +2,10 @@ import classNames from "classnames";
 import { Locals } from "hexo";
 import React, { FC } from "react";
 import styled from "styled-components";
+import readingTime from "reading-time";
 import { usePage } from "../../_context";
 
-import Hot from "./hot.svg";
+import DateIcon from "./date.svg";
 import Timer from "./timer.svg";
 
 const Wrapper = styled.section`
@@ -14,6 +15,7 @@ const Wrapper = styled.section`
 `;
 
 const Index = styled.div`
+  flex: none;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,6 +55,7 @@ const Excerpt = styled.a`
   text-overflow: ellipsis;
   white-space: nowrap;
   color: #444;
+  overflow: hidden;
 `;
 
 const Metrics = styled.div`
@@ -70,6 +73,7 @@ const Content = styled.div`
   flex: 1;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 `;
 
 const Image = styled.a`
@@ -104,7 +108,7 @@ export const Item: FC<{
   index: number;
   post: Locals.Post;
 }> = ({ index, post }) => {
-  const { url_for } = usePage();
+  const { url_for, strip_html } = usePage();
 
   let postUrl = url_for(post.path);
 
@@ -114,16 +118,18 @@ export const Item: FC<{
         <span className={classNames({ hot: index <= 3 })}>{index}</span>
       </Index>
       <Content>
-        <Title href={postUrl}>{post.title}</Title>
-        <Excerpt href={postUrl}>{post.slug}</Excerpt>
+        <Title href={postUrl}>
+          {post.title || strip_html(post.content).split("\n")[0]}
+        </Title>
+        <Excerpt href={postUrl}>{strip_html(post.excerpt ?? "")}</Excerpt>
         <Metrics>
           <MetricItem>
-            <Hot />
-            20 次查看
+            <DateIcon />
+            {post.date.format("YYYY-MM-DD")}
           </MetricItem>
           <MetricItem>
             <Timer />
-            12 分钟读完
+            {readingTime(post.raw ?? "").text}
           </MetricItem>
         </Metrics>
       </Content>

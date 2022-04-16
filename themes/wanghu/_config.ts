@@ -41,9 +41,11 @@ export interface WanghuConfig {
     /**
      * follow button link to
      */
-    follow_link?: string;
+    follow_url?: string;
   };
-  following: WanghuUser[];
+  following: (WanghuUser & {
+    url: string;
+  })[];
   /**
    * home page menus
    */
@@ -54,7 +56,8 @@ export interface WanghuConfig {
     url: string;
   }[];
   footers: {
-    text: string;
+    content: string;
+    html?: boolean;
     url?: string;
   }[];
   /**
@@ -78,7 +81,7 @@ const defaultConfig: WanghuConfig = {
     name: "Boen",
     description: "前端工程师",
     gravatar: "1997@boenfu.cn",
-    cover: "https://avatars.githubusercontent.com/u/33797740?v=4",
+    cover: "/assets/cover.jpg",
     achievements: [
       {
         title: "2022年度熬夜冠军",
@@ -86,7 +89,7 @@ const defaultConfig: WanghuConfig = {
           src: "assets/moon",
           color: "gold",
         },
-        description: "凌晨四点的爱丁堡",
+        description: "见过凌晨四点的爱丁堡",
       },
       {
         title: "书籍成色记录保持者",
@@ -105,54 +108,59 @@ const defaultConfig: WanghuConfig = {
       job: "Frontend Engineer",
       school: "Jialidun University",
     },
-    followers: 9981,
-    follow_link: "https://www.zhihu.com/people/geesang",
+    followers: 4396,
+    follow_url: "https://www.zhihu.com/people/geesang",
   },
   following: [
     {
       name: "格桑",
       gravatar: "1997@boenfu.cn",
       description: "A web dog.",
+      url: "https://www.zhihu.com/people/geesang",
     },
   ],
   menus: [
     {
       text: "Github",
-      icon: "icons/a",
-      color: "#000",
+      icon: "assets/github",
+      color: "#24292f",
       url: "https://github.com/boenfu",
     },
     {
       text: "Twitter",
-      icon: "icons/a",
-      color: "#000",
+      icon: "assets/twitter",
+      color: "#1d9bf0",
       url: "https://twitter.com/boenfu",
     },
     {
       text: "Mail",
-      icon: "icons/a",
-      color: "#000",
+      icon: "assets/gmail",
+      color: "#333",
       url: "mailto:sonebobo@gmail.com",
     },
   ],
   footers: [
     {
-      text: "Boen 的个人博客",
+      content: "Boen 的个人博客",
     },
     {
-      text: "蓉 ICP 证 10080 号",
-      url: "https://www.miitbeian.gov.cn/",
-    },
-    {
-      text: "联系我",
+      content: "联系我",
       url: "mailto:sonebobo@gmail.com",
     },
     {
-      text: "Power by Hexo & Wanghu",
+      content: "皮 ICP 证 G10000 号",
+      url: "https://https://github.com/boenfu/hexo-theme-wanghu",
+    },
+    {
+      content: `<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv">访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>`,
+      html: true,
+    },
+    {
+      content: "Power by Hexo & Wanghu",
       url: "https://github.com/boenfu/hexo-theme-wanghu",
     },
     {
-      text: "Copyright © 2022 Boenfu.",
+      content: "Copyright © 2022 Boenfu.",
     },
   ],
   comments: {

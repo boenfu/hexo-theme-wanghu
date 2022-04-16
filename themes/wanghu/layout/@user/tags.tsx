@@ -13,7 +13,7 @@ const Wrapper = styled.div`
     max-width: 60%;
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-end;
     justify-content: center;
   }
 

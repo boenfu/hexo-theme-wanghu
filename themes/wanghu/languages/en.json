@@ -1,0 +1,24 @@
+{
+  "index": "Home",
+  "posts": "Posts",
+  "tags": "Tags",
+  "categories": "Categories",
+  "archives": "Archives",
+  "about": "About",
+  "messages": "Messages",
+  "following": "Following",
+  "search_placeholder": "search post",
+  "search": "Search",
+  "user": {
+    "achievements": "Achievements",
+    "following": "Following",
+    "followers": "Followers",
+    "follow_he": "Follow",
+    "send_message": "Send message",
+    "categories_sub_title": "Categories List",
+    "following_sub_title": "Following List",
+    "created_text": "Created ",
+    "about_placeholder": "Not ready to introduce himself.",
+    "message_placeholder": "Lease leave me a message ~"
+  }
+}

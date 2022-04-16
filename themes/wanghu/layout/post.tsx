@@ -305,7 +305,7 @@ const Component: FC<HexoComponentProps> = (props) => {
           </Footer>
         </Main>
 
-        {page.comments && <Comments hexo={props} />}
+        {page.comments && <Comments />}
       </Post>
     </PageProvider>
   );

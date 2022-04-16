@@ -1127,10 +1127,10 @@ hexo-renderer-markdown-it@^4.1.0:
     markdown-it-sub "^1.0.0"
     markdown-it-sup "^1.0.0"
 
-hexo-renderer-react-styled@^0.11.0:
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/hexo-renderer-react-styled/-/hexo-renderer-react-styled-0.11.0.tgz#7c78e885555fb1f24b217fbc4ae829856e0d4b21"
-  integrity sha512-M5Qc5qwQN49CUFP3ZvTOce8/C3f6h5lJcC1gtreulLCadiKz0VlE5NfRYuU2nB/ULZbxjlFOqr8bq+bOzWnk5Q==
+hexo-renderer-react-styled@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/hexo-renderer-react-styled/-/hexo-renderer-react-styled-0.11.1.tgz#a8e8435615fd6319a7458428bdb35796c0224de0"
+  integrity sha512-u4nrCpBpxc/WXrXHScYwhHdEgu2dDTgbtmIsENQ7LtFRq9BtUnoUgSHa0DIP/hStCXxiuWU2xxCw9f8ulc+aEw==
   dependencies:
     "@svgr/core" "^6.2.1"
     "@types/hexo" "^3.8.7"
@@ -1778,6 +1778,11 @@ readdirp@~3.6.0:
   integrity sha512-hOS089on8RduqdbhvQ5Z37A0ESjsqz6qnRcffsMU3495FuTdqSm+7bhJ29JvIOsBDEEnan5DPu9t3To9VRlMzA==
   dependencies:
     picomatch "^2.2.1"
+
+reading-time@^1.5.0:
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/reading-time/-/reading-time-1.5.0.tgz#d2a7f1b6057cb2e169beaf87113cc3411b5bc5bb"
+  integrity sha512-onYyVhBNr4CmAxFsKS7bz+uTLRakypIe4R+5A824vBSkQy/hB3fZepoVEf8OVAxzLvK+H/jm9TzpI3ETSm64Kg==
 
 require-tsx@^0.1.0:
   version "0.1.0"
