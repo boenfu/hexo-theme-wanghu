@@ -1,15 +1,19 @@
 (function search() {
-  document
-    .querySelector("#search_form")
-    .addEventListener("submit", function (e) {
-      e.preventDefault();
+  let form = document.querySelector("#search_form");
 
-      window.open(
-        `https://cn.bing.com/search?q=site:${window.location.host} ${
-          document.querySelector("#search_input").value
-        }`
-      );
+  if (!form) {
+    return;
+  }
 
-      return false;
-    });
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+
+    window.open(
+      `https://cn.bing.com/search?q=site:${window.location.host} ${
+        document.querySelector("#search_input").value
+      }`
+    );
+
+    return false;
+  });
 })();

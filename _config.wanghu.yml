@@ -45,7 +45,7 @@ footers:
     url: "mailto:sonebobo@gmail.com"
   - content: "皮 ICP 证 G10000 号"
     url: "https://https://github.com/boenfu/hexo-theme-wanghu"
-  - content: "<script async src=\"//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js\"></script><span id=\"busuanzi_container_site_uv\">访客数 <span id=\"busuanzi_value_site_uv\"></span> 人次</span>"
+  - content: '<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_site_uv">访客数 <span id="busuanzi_value_site_uv"></span> 人次</span>'
     html: true
   - content: "Power by Hexo & Wanghu"
     url: "https://github.com/boenfu/hexo-theme-wanghu"

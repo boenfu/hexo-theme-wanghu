@@ -26,7 +26,6 @@
     "github-markdown-css": "^5.1.0",
     "hexo-generator-feed": "^3.0.0",
     "hexo-generator-sitemap": "^3.0.1",
-    "hexo-renderer-markdown-it": "^4.1.0",
     "hexo-renderer-react-styled": "^0.12.0",
     "json-to-pretty-yaml": "^1.2.2",
     "react": "^18.0.0",
