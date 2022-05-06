@@ -68,6 +68,12 @@ export interface WanghuConfig {
       "issue-term": string;
     };
   };
+  /**
+   * Placeholder value
+   */
+  placeholder?: {
+    postImage?: string;
+  };
 }
 
 const defaultConfig: WanghuConfig = {
@@ -161,6 +167,9 @@ const defaultConfig: WanghuConfig = {
       "issue-term": "pathname",
       theme: "github-light",
     },
+  },
+  placeholder: {
+    postImage: "https://picsum.photos/380/210",
   },
 };
 

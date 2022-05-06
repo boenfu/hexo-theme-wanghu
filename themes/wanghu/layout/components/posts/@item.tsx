@@ -108,7 +108,7 @@ export const Item: FC<{
   index: number;
   post: Locals.Post;
 }> = ({ index, post }) => {
-  const { url_for, strip_html } = usePage();
+  const { url_for, strip_html, theme } = usePage();
 
   let postUrl = url_for(post.path);
 
@@ -134,7 +134,12 @@ export const Item: FC<{
         </Metrics>
       </Content>
       <Image href={postUrl}>
-        <img src={post.photos?.[0]} />
+        <img
+          src={
+            post.photos?.[0] ??
+            `${theme.placeholder?.postImage}?r=${Math.random()}`
+          }
+        />
       </Image>
     </Wrapper>
   );

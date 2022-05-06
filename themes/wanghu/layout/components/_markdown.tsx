@@ -5,6 +5,8 @@ import githubMarkdownCSS from "github-markdown-css";
 const MarkdownWrapper = styled.section`
   .highlight {
     position: relative;
+    margin: 1em 0 !important;
+    overflow: hidden;
 
     table,
     tbody {
@@ -18,8 +20,6 @@ const MarkdownWrapper = styled.section`
       border: none !important;
       padding: 0 !important;
     }
-
-    overflow: hidden;
   }
 
   .gutter {

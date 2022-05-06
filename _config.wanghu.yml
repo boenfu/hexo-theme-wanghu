@@ -55,3 +55,5 @@ comments:
     repo: "boenfu/growth"
     issue-term: "pathname"
     theme: "github-light"
+placeholder:
+  postImage: "https://picsum.photos/380/210"
