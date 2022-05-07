@@ -49,12 +49,12 @@ export const Links: FC = () => {
         {__("posts")} <span>{page.posts.length}</span>
       </Link>
 
-      <Link href={url_for("/category")}>
+      <Link href={url_for("/categories")}>
         {__("user.created_text")}
         {__("categories")} <span>{page.categories.length}</span>
       </Link>
 
-      <Link href={url_for("/tag")}>
+      <Link href={url_for("/tags")}>
         {__("user.created_text")}
         {__("tags")} <span>{page.tags.length}</span>
       </Link>
