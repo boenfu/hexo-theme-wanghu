@@ -4,6 +4,9 @@
   "author": "boenfu",
   "private": true,
   "scripts": {
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
     "dev": "hexo server"
   },
   "hexo": {
