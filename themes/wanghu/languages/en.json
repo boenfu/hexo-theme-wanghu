@@ -9,6 +9,9 @@
   "following": "Following",
   "search_placeholder": "search post",
   "search": "Search",
+  "post_suffix": "Posts",
+  "all_tags": "All Tags",
+  "all_categories": "All Categories",
   "user": {
     "achievements": "Achievements",
     "following": "Following",

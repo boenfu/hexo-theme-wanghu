@@ -9,6 +9,9 @@
   "following": "关注",
   "search_placeholder": "搜索文章",
   "search": "搜索",
+  "post_suffix": "篇文章",
+  "all_tags": "所有标签",
+  "all_categories": "所有分类",
   "user": {
     "achievements": "个人成就",
     "following": "关注了",

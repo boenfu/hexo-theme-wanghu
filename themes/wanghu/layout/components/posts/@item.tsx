@@ -8,12 +8,6 @@ import { usePage } from "../../_context";
 import DateIcon from "./date.svg";
 import Timer from "./timer.svg";
 
-const Wrapper = styled.section`
-  position: relative;
-  display: flex;
-  padding: 16px 16px 16px 0;
-`;
-
 const Index = styled.div`
   flex: none;
   display: flex;
@@ -104,19 +98,46 @@ const MetricItem = styled.div`
   }
 `;
 
+const Wrapper = styled.section`
+  position: relative;
+  display: flex;
+  padding: 16px;
+
+  &.order {
+    padding-left: 0;
+  }
+
+  &.reverse {
+    flex-direction: row-reverse;
+
+    ${Image} {
+      margin-left: 0;
+      margin-right: 16px;
+    }
+  }
+`;
+
 export const Item: FC<{
-  index: number;
   post: Locals.Post;
-}> = ({ index, post }) => {
+  index?: number;
+  reverse?: boolean;
+}> = ({ post, index, reverse }) => {
   const { url_for, strip_html, theme } = usePage();
 
   let postUrl = url_for(post.path);
 
   return (
-    <Wrapper>
-      <Index>
-        <span className={classNames({ hot: index <= 3 })}>{index}</span>
-      </Index>
+    <Wrapper
+      className={classNames({
+        order: index !== undefined,
+        reverse,
+      })}
+    >
+      {index !== undefined ? (
+        <Index>
+          <span className={classNames({ hot: index <= 3 })}>{index}</span>
+        </Index>
+      ) : undefined}
       <Content>
         <Title href={postUrl}>
           {post.title || strip_html(post.content).split("\n")[0]}
