@@ -45,7 +45,9 @@ export const Categories: FC = () => {
         {site.categories.toArray().map((category, index) => (
           <a key={index} href={url_for(category.path)}>
             <h5>{category.name}</h5>
-            <span>{category.posts.count()} 篇内容</span>
+            <span>
+              {category.posts.count()} {__("post_suffix")}
+            </span>
           </a>
         ))}
       </section>

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { PageProvider } from "./_context";
 import { Locals } from "hexo";
 import { Comments, Markdown } from "./components";
+import Add from "./icons/add.svg";
 
 const Post = styled.div`
   display: flex;
@@ -82,19 +83,22 @@ const ProfileDescription = styled.span`
 `;
 
 const Follow = styled.div`
-  box-sizing: border-box;
-  flex: none;
-  display: block;
-  min-width: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0 16px;
   font-size: 14px;
   line-height: 32px;
-  color: #fff;
-  background-color: #8590a6;
-  text-align: center;
-  border: 1px solid;
+  background: #06f;
+  border: 1px solid #06f;
   border-radius: 3px;
-  overflow: hidden;
+  color: #fff;
+  margin-left: 16px;
+
+  svg {
+    font-size: 1.2em;
+    margin-right: 8px;
+  }
 `;
 
 const PostStatus = styled.div`
@@ -221,7 +225,7 @@ const Recommends = styled.section`
 `;
 
 const Component: FC<HexoComponentProps> = (props) => {
-  const { page, url_for, js } = props;
+  const { page, theme, url_for, __ } = props;
 
   let titleImage = page.photos?.[0];
 
@@ -237,10 +241,13 @@ const Component: FC<HexoComponentProps> = (props) => {
               <Author>
                 <ProfileName>Boenfu</ProfileName>
                 <ProfileDescription>
-                  前端开发话题下的优秀答主
+                  {theme.user.achievements?.[0].title || theme.user.description}
                 </ProfileDescription>
               </Author>
-              <Follow>已关注</Follow>
+              <Follow>
+                {<Add />}
+                {__("user.follow_he")}
+              </Follow>
             </ProfileInfo>
             <PostStatus>100w 人赞同了该文章</PostStatus>
             <Markdown content={page.content} />
