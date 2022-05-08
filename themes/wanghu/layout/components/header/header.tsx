@@ -224,13 +224,13 @@ const General: FC<HexoComponentProps> = ({
     // {
     //   type: "categories",
     //   isActive: () => is_category() || page.path.startsWith("categories/"),
-    //   content: "分类",
+    //   content: __(" categories"),
     // },
-    {
-      type: "tags",
-      isActive: () => is_tag() || page.path.startsWith("tags/"),
-      content: __("tags"),
-    },
+    // {
+    //   type: "tags",
+    //   isActive: () => is_tag() || page.path.startsWith("tags/"),
+    //   content: __("tags"),
+    // },
   ];
 
   return (

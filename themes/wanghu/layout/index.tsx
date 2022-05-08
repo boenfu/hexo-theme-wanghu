@@ -3,7 +3,10 @@ import styled from "styled-components";
 import { Footer, Posts } from "./components";
 import { PageProvider } from "./_context";
 
-import Flash from "./icons/flash.svg";
+import Tag from "./icons/tag.svg";
+import Category from "./icons/category.svg";
+import Files from "./icons/files.svg";
+import Info from "./icons/info.svg";
 import { Menus } from "./@index";
 
 const Index = styled.div`
@@ -51,8 +54,9 @@ const LinkIcon = styled.div`
 `;
 
 const Link = styled.a`
-  width: 100%;
+  position: relative;
   display: flex;
+  width: 100%;
   height: 40px;
   align-items: center;
   box-sizing: border-box;
@@ -62,9 +66,27 @@ const Link = styled.a`
   transition: all 0.2s linear;
   cursor: pointer;
 
+  i {
+    position: absolute;
+    box-sizing: border-box;
+    top: 6px;
+    right: 20px;
+    height: 26px;
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 2px;
+    color: #8590a6;
+    background: #f6f6f6;
+    transition: all 0.2s linear;
+  }
+
   &:hover {
-    background-color: #f6f6f6;
     color: #76839b;
+    background-color: #f6f6f6;
+
+    i {
+      background-color: #fff;
+    }
   }
 `;
 
@@ -90,7 +112,7 @@ const Page = styled.div`
 `;
 
 const Component: FC<HexoComponentProps> = (props) => {
-  const { page, theme, config, url_for, __ } = props;
+  const { site, page, theme, config, url_for, __ } = props;
 
   return (
     <PageProvider value={props}>
@@ -119,14 +141,36 @@ const Component: FC<HexoComponentProps> = (props) => {
         <Sidebar>
           <Menus />
           <Links>
-            {["我的余额", "为0", "为0", "为0"].map((item, index) => (
-              <Link key={index}>
-                <LinkIcon>
-                  <Flash />
-                </LinkIcon>
-                {item}
-              </Link>
-            ))}
+            <Link href={url_for("/archives")}>
+              <LinkIcon>
+                <Files />
+              </LinkIcon>
+              {__("posts")}
+              <i>{site.posts.count()}</i>
+            </Link>
+
+            <Link href={url_for("/tags")}>
+              <LinkIcon>
+                <Tag />
+              </LinkIcon>
+              {__("tags")}
+              <i>{site.tags.count()}</i>
+            </Link>
+
+            <Link href={url_for("/categories")}>
+              <LinkIcon>
+                <Category />
+              </LinkIcon>
+              {__("categories")}
+              <i>{site.categories.count()}</i>
+            </Link>
+
+            <Link href={url_for("/about")}>
+              <LinkIcon>
+                <Info />
+              </LinkIcon>
+              {__("about")}
+            </Link>
           </Links>
           <Footer data={theme.footers} />
         </Sidebar>
