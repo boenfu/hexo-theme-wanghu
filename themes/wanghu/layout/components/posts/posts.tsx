@@ -10,12 +10,13 @@ const Wrapper = styled.div`
 `;
 
 export const Posts: FC<{
+  start: number;
   posts: Locals.Post[];
-}> = ({ posts }) => {
+}> = ({ start, posts }) => {
   return (
     <Wrapper>
       {posts.map((post, index) => (
-        <Item key={post.path} index={index + 1} post={post} />
+        <Item key={post.path} index={start + index + 1} post={post} />
       ))}
     </Wrapper>
   );

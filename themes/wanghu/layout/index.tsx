@@ -72,15 +72,48 @@ const Links = styled(SidebarSection)`
   padding: 8px 0;
 `;
 
+const Page = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+
+  a {
+    color: #8590a6;
+    padding: 12px;
+    transition: color 0.2s linear;
+
+    &:hover {
+      color: #06f;
+    }
+  }
+`;
+
 const Component: FC<HexoComponentProps> = (props) => {
-  const { page, theme } = props;
+  const { page, theme, config, url_for, __ } = props;
 
   return (
     <PageProvider value={props}>
       <Index>
         <Main>
           <Content>
-            <Posts posts={page.posts} />
+            <Posts
+              posts={page.posts}
+              start={+(page.prev || 0) * config.per_page}
+            />
+
+            <Page>
+              {page.prev ? (
+                <a
+                  href={url_for(+page.prev === 1 ? "/" : `/page/${page.prev}`)}
+                >
+                  {__("page.prev")}
+                </a>
+              ) : undefined}
+              {page.next ? (
+                <a href={url_for(`/page/${page.next}`)}> {__("page.next")}</a>
+              ) : undefined}
+            </Page>
           </Content>
         </Main>
         <Sidebar>
