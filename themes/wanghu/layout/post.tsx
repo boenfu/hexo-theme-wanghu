@@ -283,7 +283,7 @@ const Component: FC<HexoComponentProps> = (props) => {
             ) : undefined}
           </Content>
           <Footer>
-            <SectionTitle>推荐阅读</SectionTitle>
+            <SectionTitle>{__("recommended")}</SectionTitle>
             <Recommends>
               <RecommendItem>
                 <RecommendCover src="https://pic2.zhimg.com/v2-5929ea14fde5e03e98cf21d65753f3ee_250x0.jpg?source=172ae18b"></RecommendCover>
