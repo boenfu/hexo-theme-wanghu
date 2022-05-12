@@ -205,11 +205,16 @@ const RecommendDescription = styled.span`
   position: absolute;
   bottom: 12px;
   left: 12px;
+  right: 12px;
   display: flex;
   justify-content: space-between;
-  width: 100%;
   font-size: 14px;
+  line-height: 24px;
   color: #8590a6;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 `;
 
 const Recommends = styled.section`
@@ -225,9 +230,11 @@ const Recommends = styled.section`
 `;
 
 const Component: FC<HexoComponentProps> = (props) => {
-  const { page, theme, url_for, __ } = props;
+  const { page, theme, url_for, strip_html, __ } = props;
 
   let titleImage = page.photos?.[0];
+
+  const recommends = getRecommends(props);
 
   return (
     <PageProvider value={props}>
@@ -285,29 +292,26 @@ const Component: FC<HexoComponentProps> = (props) => {
           <Footer>
             <SectionTitle>{__("recommended")}</SectionTitle>
             <Recommends>
-              <RecommendItem>
-                <RecommendCover src="https://pic2.zhimg.com/v2-5929ea14fde5e03e98cf21d65753f3ee_250x0.jpg?source=172ae18b"></RecommendCover>
-                <RecommendTitle>asdasd</RecommendTitle>
-                <RecommendDescription>asdasd</RecommendDescription>
-              </RecommendItem>
+              {recommends.map((post, index) => {
+                let postUrl = url_for(post.path);
 
-              <RecommendItem>
-                <RecommendCover src="https://pic2.zhimg.com/v2-5929ea14fde5e03e98cf21d65753f3ee_250x0.jpg?source=172ae18b"></RecommendCover>
-                <RecommendTitle>asdasd</RecommendTitle>
-                <RecommendDescription>asdasd</RecommendDescription>
-              </RecommendItem>
-
-              <RecommendItem>
-                <RecommendCover src="https://pic2.zhimg.com/v2-5929ea14fde5e03e98cf21d65753f3ee_250x0.jpg?source=172ae18b"></RecommendCover>
-                <RecommendTitle>asdasd</RecommendTitle>
-                <RecommendDescription>asdasd</RecommendDescription>
-              </RecommendItem>
-
-              <RecommendItem>
-                <RecommendCover src="https://pic2.zhimg.com/v2-5929ea14fde5e03e98cf21d65753f3ee_250x0.jpg?source=172ae18b"></RecommendCover>
-                <RecommendTitle>asdasd</RecommendTitle>
-                <RecommendDescription>asdasd</RecommendDescription>
-              </RecommendItem>
+                return (
+                  <RecommendItem key={index} href={postUrl}>
+                    <RecommendCover
+                      src={
+                        post.photos?.[0] ??
+                        `${theme.placeholder?.postImage}?r=${Math.random()}`
+                      }
+                    ></RecommendCover>
+                    <RecommendTitle>
+                      {post.title || strip_html(post.content).split("\n")[0]}
+                    </RecommendTitle>
+                    <RecommendDescription>
+                      {strip_html(post.excerpt ?? "")}
+                    </RecommendDescription>
+                  </RecommendItem>
+                );
+              })}
             </Recommends>
           </Footer>
         </Main>
@@ -319,3 +323,80 @@ const Component: FC<HexoComponentProps> = (props) => {
 };
 
 export default Component;
+
+function getRecommends({ page, site }: HexoComponentProps): Locals.Post[] {
+  // 前一篇，同分类，同标签，后一篇
+
+  let recommendIds = new Set([page._id]);
+
+  let recommends = [];
+
+  if (page.prev) {
+    recommendIds.add(page.prev._id);
+    recommends.push(page.prev);
+  }
+
+  for (let { posts: { data: [post] = [] } = {} } of page.categories?.data ||
+    []) {
+    if (!post || recommendIds.has(post._id)) {
+      continue;
+    }
+
+    recommendIds.add(post._id);
+    recommends.push(post);
+    break;
+  }
+
+  for (let { posts: { data: [post] = [] } = {} } of page.tags?.data || []) {
+    if (!post || recommendIds.has(post._id)) {
+      continue;
+    }
+
+    recommendIds.add(post._id);
+    recommends.push(post);
+
+    break;
+  }
+
+  if (page.next) {
+    recommendIds.add(page.next._id);
+    recommends.push(page.next);
+  }
+
+  let limit = 4;
+
+  if (recommends.length < limit) {
+    for (let post of site.posts.toArray()) {
+      // 先随机
+      if (Math.random() > 0.5 || recommendIds.has(post._id)) {
+        continue;
+      }
+
+      recommendIds.add(post._id);
+      recommends.push(post);
+
+      if (recommends.length === limit) {
+        break;
+      }
+    }
+
+    if (recommends.length < limit) {
+      // 随机还不够就按顺序了
+
+      for (let post of site.posts.toArray()) {
+        if (recommendIds.has(post._id)) {
+          continue;
+        }
+
+        recommendIds.add(post._id);
+        recommends.push(post);
+
+        if (recommends.length === limit) {
+          break;
+        }
+      }
+    }
+  }
+
+  return recommends;
+}
