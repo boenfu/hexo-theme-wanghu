@@ -316,7 +316,7 @@ const Component: FC<HexoComponentProps> = (props) => {
           </Footer>
         </Main>
 
-        {page.comments && <Comments />}
+        {page.comments && <Comments style={{ width: 690 }} />}
       </Post>
     </PageProvider>
   );

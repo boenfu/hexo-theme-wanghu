@@ -60,13 +60,9 @@ export interface WanghuConfig {
    */
   comments?: {
     /**
-     * see https://utteranc.es/
+     * recommend https://utteranc.es/ or https://giscus.app/
      */
-    utteranc?: {
-      repo: string;
-      theme: string;
-      "issue-term": string;
-    };
+    script?: string;
   };
   /**
    * Placeholder value
@@ -162,11 +158,21 @@ const defaultConfig: WanghuConfig = {
     },
   ],
   comments: {
-    utteranc: {
-      repo: "boenfu/growth",
-      "issue-term": "pathname",
-      theme: "github-light",
-    },
+    script: `<script src="https://giscus.app/client.js"
+    data-repo="boenfu/hexo-theme-wanghu"
+    data-repo-id="R_kgDOHJLQlw"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOHJLQl84CPGJ4"
+    data-mapping="pathname"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="bottom"
+    data-theme="light"
+    data-lang="zh-CN"
+    data-loading="lazy"
+    crossorigin="anonymous"
+    async>
+</script>`,
   },
   placeholder: {
     postImage: "https://picsum.photos/380/210",

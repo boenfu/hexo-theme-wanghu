@@ -38,6 +38,7 @@ export const MarkdownPage: FC<{
 
       <Comments
         style={{
+          flex: 1,
           padding: "16px 20px",
         }}
       />

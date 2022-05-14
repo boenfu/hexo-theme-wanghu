@@ -51,9 +51,6 @@ footers:
     url: "https://github.com/boenfu/hexo-theme-wanghu"
   - content: "Copyright © 2022 Boenfu."
 comments:
-  utteranc:
-    repo: "boenfu/growth"
-    issue-term: "pathname"
-    theme: "github-light"
+  script: "<script src=\"https://giscus.app/client.js\"\n    data-repo=\"boenfu/hexo-theme-wanghu\"\n    data-repo-id=\"R_kgDOHJLQlw\"\n    data-category=\"Announcements\"\n    data-category-id=\"DIC_kwDOHJLQl84CPGJ4\"\n    data-mapping=\"pathname\"\n    data-reactions-enabled=\"1\"\n    data-emit-metadata=\"0\"\n    data-input-position=\"bottom\"\n    data-theme=\"light\"\n    data-lang=\"zh-CN\"\n    data-loading=\"lazy\"\n    crossorigin=\"anonymous\"\n    async>\n</script>"
 placeholder:
   postImage: "https://picsum.photos/380/210"
