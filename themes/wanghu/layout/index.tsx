@@ -72,8 +72,9 @@ const Link = styled.a`
     top: 6px;
     right: 20px;
     height: 26px;
+    line-height: 26px;
     font-size: 12px;
-    padding: 6px 10px;
+    padding: 0 10px;
     border-radius: 2px;
     color: #8590a6;
     background: #f6f6f6;
