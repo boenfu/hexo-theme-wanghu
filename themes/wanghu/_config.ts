@@ -18,6 +18,9 @@ export interface WanghuUserProfile {
 
 export interface WanghuConfig {
   title?: string;
+  post?: {
+    status?: string;
+  };
   /**
    * user configuration
    */
@@ -74,6 +77,9 @@ export interface WanghuConfig {
 
 const defaultConfig: WanghuConfig = {
   title: "忘乎",
+  post: {
+    status: `<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv">本文已被阅读 <span id="busuanzi_value_page_pv"></span> 次</span>`,
+  },
   user: {
     name: "Boen",
     description: "前端工程师",

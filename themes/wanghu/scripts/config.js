@@ -4,7 +4,6 @@ const path = require("path");
 const fs = require("fs");
 const YAML = require("json-to-pretty-yaml");
 
-// 检测是否有主题配置文件
 logger.info("[Wanghu] Checking theme configurations");
 
 let themeF = hexo.theme_dir.split(path.sep);
@@ -22,4 +21,6 @@ if (!fs.existsSync(sitePC)) {
   const themePC = path.join(hexo.theme_dir, "_config.ts");
 
   fs.writeFileSync(sitePC, YAML.stringify(require(themePC), undefined, 2));
+
+  process.exit(0, "Need restart server");
 }

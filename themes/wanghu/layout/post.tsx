@@ -256,9 +256,15 @@ const Component: FC<HexoComponentProps> = (props) => {
                 {__("user.follow_he")}
               </Follow>
             </ProfileInfo>
-            <PostStatus>100w 人赞同了该文章</PostStatus>
+            <PostStatus
+              {...(theme.post?.status && {
+                dangerouslySetInnerHTML: { __html: theme.post?.status },
+              })}
+            ></PostStatus>
             <Markdown content={page.content} />
-            <PostTime>发布于 2022-04-01 15:46</PostTime>
+            <PostTime>
+              {__("post_publish_at")} {page.date.format("YYYY-MM-DD HH:mm:ss")}
+            </PostTime>
             {page.tags?.length ? (
               <Tags>
                 {(page.tags as Locals.Tag[]).map((tag, index) => (
@@ -270,16 +276,15 @@ const Component: FC<HexoComponentProps> = (props) => {
             ) : undefined}
             {page.categories?.length ? (
               <Categories>
-                <SectionTitle>文章被以下分类收录</SectionTitle>
+                <SectionTitle>{__("post_category_by")}</SectionTitle>
                 {(page.categories as Locals.Category[]).map(
                   (category, index) => (
                     <Category key={index}>
-                      <ProfileInfo href={url_for("/about")}>
-                        <ProfileImage />
+                      <ProfileInfo href={url_for(category.path)}>
                         <Author>
                           <ProfileName>{category.name}</ProfileName>
                           <ProfileDescription>
-                            {`${category.posts.count()} 篇文章`}
+                            {`${category.posts.count()} ${__("post_suffix")}`}
                           </ProfileDescription>
                         </Author>
                       </ProfileInfo>

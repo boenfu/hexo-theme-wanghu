@@ -10,6 +10,8 @@
   "search_placeholder": "搜索文章",
   "search": "搜索",
   "post_suffix": "篇文章",
+  "post_publish_at": "发布于",
+  "post_category_by": "文章被以下分类收录",
   "all_tags": "所有标签",
   "all_categories": "所有分类",
   "recommended": "推荐阅读",

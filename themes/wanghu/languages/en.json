@@ -10,6 +10,8 @@
   "search_placeholder": "search post",
   "search": "Search",
   "post_suffix": "Posts",
+  "post_publish_at": "publish at",
+  "post_category_by": "Categories",
   "all_tags": "All tags",
   "all_categories": "All categories",
   "recommended": "Recommended posts",
