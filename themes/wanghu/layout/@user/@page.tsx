@@ -15,12 +15,12 @@ export const MarkdownPage: FC<{
   file: string;
   placeholder: string;
 }> = ({ file, placeholder }) => {
-  const { page, __ } = usePage();
+  const { site, __ } = usePage();
 
   let content = (
-    page.posts
-      .filter((post: Locals.Post) => post.source.startsWith(`_posts/${file}`))
-      .toArray()?.[0] as Locals.Post | undefined
+    site.pages
+      .filter((post: Locals.Page) => post.source.startsWith(`page/${file}`))
+      .toArray()?.[0] as Locals.Page | undefined
   )?.content;
 
   return (
