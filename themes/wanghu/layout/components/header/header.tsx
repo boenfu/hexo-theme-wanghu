@@ -298,11 +298,11 @@ const General: FC<HexoComponentProps> = ({
 const Post: FC<HexoComponentProps> = ({ url_for, theme, gravatar }) => {
   return (
     <>
-      {/* WIP */}
-      {/* <PostHeader>
-        <PostFirst>Publish</PostFirst>
-        <PostSource href={url_for("/")}>Site Name</PostSource>
-      </PostHeader> */}
+      <PostHeader>
+        {/* WIP */}
+        {/* <PostFirst>Publish</PostFirst>
+        <PostSource href={url_for("/")}>Site Name</PostSource> */}
+      </PostHeader>
       <UserInfo>
         <a href={url_for("/about")}>
           <UserProfile

@@ -1,5 +1,2 @@
 language: zh-cn
 theme: wanghu
-feed:
-  type:
-    - rss2
