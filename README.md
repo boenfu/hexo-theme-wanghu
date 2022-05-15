@@ -1,8 +1,3 @@
-Work in progress
-
-<table><tr><td><img src="./docs/home.png" />Home</td><td><img src="./docs/user.png" />User</td></tr> </table>
-(开发未完成，部分截图)
-
 # Hexo Theme Unit Test
 
 This is a dummy Hexo site for theme unit test. You should test your theme before release.
