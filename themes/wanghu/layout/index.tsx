@@ -13,6 +13,7 @@ const Index = styled.div`
   display: flex;
   align-items: flex-start;
   width: 1000px;
+  min-height: 100%;
   padding: 0 16px;
   margin: 0 auto;
 `;
